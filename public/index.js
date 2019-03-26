@@ -1,5 +1,30 @@
 (function () {
 
+    class Canvas {
+        init () {
+            const $canvas = document.querySelector(".dot-game-canvas");
+            const $controls = document.querySelector(".dot-game-controls");
+            const userAgentMarginOffset = 24;
+            const width = window.innerWidth - userAgentMarginOffset;
+            const height = window.innerHeight - $controls.clientHeight - userAgentMarginOffset;
+
+            $canvas.setAttribute("width", width.toString());
+            $canvas.setAttribute("height", height.toString());
+
+            this.height = $canvas.height;
+            this.width = $canvas.width;
+            this.context = $canvas.getContext("2d");
+
+        }
+    }
+
+    class Circle {
+
+    }
+
+    const canvas = new Canvas();
+
+
     function logCircle (circle) {
         console.log(`x: ${circle.x} y: ${circle.y} radius: ${circle.radius}`);
     }
@@ -32,9 +57,11 @@
 
     }
 
+
     const circles = [];
     const MAX_CIRCLES = 2;
     for (let i = 0; i < MAX_CIRCLES; i++) {
+
         circles.push({
             x: 50,
             y: 0,
@@ -57,28 +84,22 @@
     // Game loop
 
     DotGame.init = function initCanvas () {
-        const $canvas = document.querySelector(".dot-game-canvas");
-        const $controls = document.querySelector(".dot-game-controls");
-        const userAgentMarginOffset = 24;
-        const width = window.innerWidth - userAgentMarginOffset;
-        const height = window.innerHeight - $controls.clientHeight - userAgentMarginOffset;
+        canvas.init();
+    };
 
-        $canvas.setAttribute("width", width.toString());
-        $canvas.setAttribute("height", height.toString());
-
-        const context = $canvas.getContext("2d");
-        const canvasHeight = $canvas.height;
-        const canvasWidth = $canvas.width;
-
+    DotGame.init = function initCanvas () {
+        canvas.init();
+        const context = canvas.context;
+        const width = canvas.width;
+        const height = canvas.height;
         let speed = 1;
-
         function gameLoop () {
-            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            context.clearRect(0, 0, width, height);
             context.beginPath();
             context.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
             context.stroke();
             circle.y = circle.y + speed;
-            if (circle.y > canvasHeight) {
+            if (circle.y > height) {
                 circle.y = 0;
             }
             window.requestAnimationFrame(gameLoop);
