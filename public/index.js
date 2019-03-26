@@ -1,6 +1,7 @@
 (function () {
 
     class Canvas {
+
         init () {
             const $canvas = document.querySelector(".dot-game-canvas");
             const $controls = document.querySelector(".dot-game-controls");
@@ -14,59 +15,77 @@
             this.height = $canvas.height;
             this.width = $canvas.width;
             this.context = $canvas.getContext("2d");
-
         }
+    }
+
+    class Point {
+
+        static distance(a, b) {
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            return Math.hypot(dx, dy);
+        }
+
+        constructor(x, y) {
+            this.x = parseFloat(x);
+            this.y = parseFloat(y);
+        }
+
+        log () {
+            console.log("x: " + x + " y: " + y);
+        }
+
+
     }
 
     class Circle {
 
+        constructor () {
+            this.center = new Point(50, 0);
+            this.radius = this.getRandomCircleRadius();
+        }
+
+        log () {
+            console.log(`x: ${this.center.x} y: ${this.center.y} radius: ${this.radius}`);
+        }
+
+        /*
+         * Returns a circle radius with a
+         * max diameter = 100 or
+         * min diameter = 10
+         */
+        getRandomCircleRadius () {
+            return Math.floor(Math.random() * 50) + 5;
+        }
+
+        contains (point) {
+            return Point.distance(point, this.center) <= this.radius;
+        }
+
+    }
+
+    class Game {
+
+        constructor () {
+
+        }
+
+        init () {
+
+        }
+
+        loop () {
+
+        }
     }
 
     const canvas = new Canvas();
 
 
-    function logCircle (circle) {
-        console.log(`x: ${circle.x} y: ${circle.y} radius: ${circle.radius}`);
-    }
-
-    function logPoint (x, y) {
-        console.log("x: " + x + " y: " + y);
-    }
-
-    function getDistanceFromCenter(circle, x, y) {
-        const xDistanceSquare = Math.pow(parseFloat(circle.x) - parseFloat(x), 2);
-        const yDistanceSquare = Math.pow(parseFloat(circle.y) - parseFloat(y), 2);
-        return Math.sqrt(xDistanceSquare + yDistanceSquare);
-    }
-
-    function isHit (circle, x, y) {
-        const distanceFromCenter = getDistanceFromCenter(circle, x, y);
-        return distanceFromCenter <= circle.radius;
-    }
-
-    /*
-     * Returns a circle radius with a
-     * max diameter = 100 or
-     * min diameter = 10
-     */
-    function getRandomCircleRadius () {
-        return Math.floor(Math.random() * 50) + 5;
-    }
-
-    function getRandomXLocation () {
-
-    }
-
-
     const circles = [];
     const MAX_CIRCLES = 2;
     for (let i = 0; i < MAX_CIRCLES; i++) {
-
-        circles.push({
-            x: 50,
-            y: 0,
-            radius : getRandomCircleRadius()
-        });
+        circles.push(new Circle());
     }
 
     const circle = circles[0];
@@ -74,10 +93,8 @@
     window.DotGame = window.DotGame || {};
 
     DotGame.handleClick = function handleCanvasClick () {
-        const x = event.offsetX;
-        const y = event.offsetY;
-        console.log("Is Hit: ")
-        console.log(isHit(circle, x, y));
+        const point = new Point(event.offsetX, event.offsetY);
+        console.log(circle.contains(point));
     };
 
 
