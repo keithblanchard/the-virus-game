@@ -19,11 +19,30 @@
         return distanceFromCenter <= circle.radius;
     }
 
-    const circle = {
-        x : 50,
-        y : 0,
-        radius: 40
-    };
+    /*
+     * Returns a circle radius with a
+     * max diameter = 100 or
+     * min diameter = 10
+     */
+    function getRandomCircleRadius () {
+        return Math.floor(Math.random() * 50) + 5;
+    }
+
+    function getRandomXLocation () {
+
+    }
+
+    const circles = [];
+    const MAX_CIRCLES = 2;
+    for (let i = 0; i < MAX_CIRCLES; i++) {
+        circles.push({
+            x: 50,
+            y: 0,
+            radius : getRandomCircleRadius()
+        });
+    }
+
+    const circle = circles[0];
 
     window.DotGame = window.DotGame || {};
 
@@ -34,6 +53,8 @@
         console.log(isHit(circle, x, y));
     };
 
+
+    // Game loop
 
     DotGame.init = function initCanvas () {
         const $canvas = document.querySelector(".dot-game-canvas");
@@ -50,23 +71,20 @@
         const canvasWidth = $canvas.width;
 
         let speed = 1;
-        function step () {
-            //logCircle(circle);
+
+        function gameLoop () {
             context.clearRect(0, 0, canvasWidth, canvasHeight);
             context.beginPath();
             context.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
             context.stroke();
-
             circle.y = circle.y + speed;
-
             if (circle.y > canvasHeight) {
                 circle.y = 0;
             }
-
-            window.requestAnimationFrame(step);
+            window.requestAnimationFrame(gameLoop);
         }
 
-        window.requestAnimationFrame(step);
+        window.requestAnimationFrame(gameLoop);
     };
 
 
