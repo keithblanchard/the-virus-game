@@ -1,11 +1,29 @@
 (function () {
 
+    function isHit (circle, x, y) {
+
+    }
+
+    function drawCircle (circle) {
+
+    }
+
+
+    const circle = {
+        x : 50,
+        y : 0,
+        radius: 40
+    };
+
     window.DotGame = window.DotGame || {};
 
     DotGame.handleClick = function handleCanvasClick () {
-        console.log(arguments);
-        console.log("click event");
+        const x = event.offsetX;
+        const y = event.offsetY;
+
     };
+
+
 
     DotGame.init = function initCanvas () {
         const $canvas = document.querySelector(".dot-game-canvas");
@@ -21,18 +39,17 @@
         const canvasHeight = $canvas.height;
         const canvasWidth = $canvas.width;
 
-        let index = 0;
-
+        let speed = 1;
         function step () {
             context.clearRect(0, 0, canvasWidth, canvasHeight);
             context.beginPath();
-            context.arc(50, index, 40, 0, 2 * Math.PI);
+            context.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
             context.stroke();
 
-            index++;
+            circle.y = circle.y + speed;
 
-            if (index > canvasHeight) {
-                index = 0;
+            if (circle.y > canvasHeight) {
+                circle.y = 0;
             }
 
             window.requestAnimationFrame(step);
