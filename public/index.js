@@ -13,6 +13,7 @@
         const userAgentMarginOffset = 24;
         const width = window.innerWidth - userAgentMarginOffset;
         const height = window.innerHeight - $controls.clientHeight - userAgentMarginOffset;
+
         $canvas.setAttribute("width", width.toString());
         $canvas.setAttribute("height", height.toString());
 
@@ -22,10 +23,8 @@
 
         let index = 0;
 
-
         function step () {
             context.clearRect(0, 0, canvasWidth, canvasHeight);
-
             context.beginPath();
             context.arc(50, index, 40, 0, 2 * Math.PI);
             context.stroke();
