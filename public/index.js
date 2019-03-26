@@ -4,8 +4,19 @@
         console.log(`x: ${circle.x} y: ${circle.y} radius: ${circle.radius}`);
     }
 
-    function isHit (circle, x, y) {
+    function logPoint (x, y) {
+        console.log("x: " + x + " y: " + y);
+    }
 
+    function getDistanceFromCenter(circle, x, y) {
+        const xDistanceSquare = Math.pow(parseFloat(circle.x) - parseFloat(x), 2);
+        const yDistanceSquare = Math.pow(parseFloat(circle.y) - parseFloat(y), 2);
+        return Math.sqrt(xDistanceSquare + yDistanceSquare);
+    }
+
+    function isHit (circle, x, y) {
+        const distanceFromCenter = getDistanceFromCenter(circle, x, y);
+        return distanceFromCenter <= circle.radius;
     }
 
     const circle = {
@@ -19,13 +30,9 @@
     DotGame.handleClick = function handleCanvasClick () {
         const x = event.offsetX;
         const y = event.offsetY;
-
-        console.log("x: " + x + " y: " + y);
-        logCircle(circle);
-
+        console.log("Is Hit: ")
+        console.log(isHit(circle, x, y));
     };
-
-
 
 
     DotGame.init = function initCanvas () {
