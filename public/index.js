@@ -1,13 +1,12 @@
 (function () {
 
+    function logCircle (circle) {
+        console.log(`x: ${circle.x} y: ${circle.y} radius: ${circle.radius}`);
+    }
+
     function isHit (circle, x, y) {
 
     }
-
-    function drawCircle (circle) {
-
-    }
-
 
     const circle = {
         x : 50,
@@ -21,7 +20,11 @@
         const x = event.offsetX;
         const y = event.offsetY;
 
+        console.log("x: " + x + " y: " + y);
+        logCircle(circle);
+
     };
+
 
 
 
@@ -41,6 +44,7 @@
 
         let speed = 1;
         function step () {
+            //logCircle(circle);
             context.clearRect(0, 0, canvasWidth, canvasHeight);
             context.beginPath();
             context.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
