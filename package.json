@@ -1,13 +1,15 @@
 {
-  "name": "sass",
+  "name": "dot-game",
   "version": "0.1.0",
   "description": "Example project showing how to use Sass middleware",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "sass": "node ./node_modules/sass/sass.js ./scss/index.scss ./public/index.css"
   },
   "dependencies": {
-    "express": "^4.15.0"
+    "express": "^4.15.0",
+    "sass": "^1.17.3"
   },
   "keywords": [
     "node",

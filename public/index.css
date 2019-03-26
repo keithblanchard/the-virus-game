@@ -1,0 +1,18 @@
+.dot-game-canvas {
+  border: 2px solid black;
+  border-top: 0px;
+}
+
+.dot-game-controls {
+  min-height: 110px;
+  width: 318px;
+  border: 1px solid black;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=index.css.map */
