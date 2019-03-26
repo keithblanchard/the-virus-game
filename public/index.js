@@ -10,8 +10,9 @@
     DotGame.init = function initCanvas () {
         const $canvas = document.querySelector(".dot-game-canvas");
         const $controls = document.querySelector(".dot-game-controls");
-        const width = window.innerWidth - 24;
-        const height = window.innerHeight;
+        const userAgentMarginOffset = 24;
+        const width = window.innerWidth - userAgentMarginOffset;
+        const height = window.innerHeight - $controls.clientHeight - userAgentMarginOffset;
         $canvas.setAttribute("width", width.toString());
         $canvas.setAttribute("height", height.toString());
 
