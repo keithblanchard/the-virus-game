@@ -102,20 +102,17 @@
 
     DotGame.init = function initCanvas () {
         canvas.init();
-    };
-
-    DotGame.init = function initCanvas () {
-        canvas.init();
         const context = canvas.context;
         const width = canvas.width;
         const height = canvas.height;
         let speed = 1;
         function gameLoop () {
+           // console.log("loop");
             context.clearRect(0, 0, width, height);
             context.beginPath();
-            context.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+            context.arc(circle.center.x, circle.center.y, circle.radius, 0, 2 * Math.PI);
             context.stroke();
-            circle.y = circle.y + speed;
+            circle.center.y = circle.center.y + speed;
             if (circle.y > height) {
                 circle.y = 0;
             }
