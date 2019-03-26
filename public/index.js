@@ -8,10 +8,16 @@
     };
 
     DotGame.init = function initCanvas () {
-        const canvas = document.querySelector(".dot-game-canvas");
-        const context = canvas.getContext("2d");
-        const canvasHeight = canvas.height;
-        const canvasWidth = canvas.width;
+        const $canvas = document.querySelector(".dot-game-canvas");
+        const $controls = document.querySelector(".dot-game-controls");
+        const width = window.innerWidth - 24;
+        const height = window.innerHeight;
+        $canvas.setAttribute("width", width.toString());
+        $canvas.setAttribute("height", height.toString());
+
+        const context = $canvas.getContext("2d");
+        const canvasHeight = $canvas.height;
+        const canvasWidth = $canvas.width;
 
         let index = 0;
 
