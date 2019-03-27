@@ -38,7 +38,7 @@
         constructor (maxX) {
             this.radius = this.getRandomCircleRadius();
             let x = Math.random() * maxX;
-            const padding = 10;
+            const padding = 10; // Don't touch the side walls.
             if (x < this.radius) {
                 x = this.radius + padding;
             }
@@ -68,6 +68,7 @@
 
         constructor () {
             this.score = 0;
+            this.smoothness = 10;
         }
 
         init (canvas) {
@@ -91,7 +92,7 @@
                 this.circles.forEach( (circle)=> {
                     this.tickCircle(circle);
                 });
-            }, 1000);
+            }, 1000/this.smoothness);
         }
 
         tick () {
@@ -137,7 +138,7 @@
             if (circle.center.y > this.height) {
                 circle.center.y = 0;
             }
-            circle.center.y = circle.center.y + this.speed;
+            circle.center.y = circle.center.y + Math.floor(this.speed / this.smoothness);
         }
 
         animationLoop () {
