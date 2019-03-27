@@ -64,7 +64,7 @@
         }
 
         contains (point) {
-            return Point.distance(point, this.center) <= this.radius;
+            return Point.distance(point, this.center) >= this.radius;
         }
 
     }
@@ -81,10 +81,10 @@
 
         initCircles () {
             this.circles = [];
-            const MAX_CIRCLES = 10;
-            for (let i = 0; i < MAX_CIRCLES; i++) {
+            this.circles.push(new Circle(this.width));
+            setInterval(() => {
                 this.circles.push(new Circle(this.width));
-            }
+            }, 1000);
         }
 
         tick () {
@@ -98,7 +98,9 @@
         }
 
         makeMove(point) {
-            //console.log(this.circle.contains(point));
+            this.circles = this.circles.filter((circle)=> {
+                return circle.contains(point);
+            });
         }
 
         drawCircle (circle) {
