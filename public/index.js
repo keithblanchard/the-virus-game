@@ -66,11 +66,7 @@
 
     class Game {
 
-        constructor (canvas) {
-            this.context = canvas.context;
-            this.width = canvas.width;
-            this.height = canvas.height;
-
+        constructor () {
             const circles = [];
             const MAX_CIRCLES = 2;
             for (let i = 0; i < MAX_CIRCLES; i++) {
@@ -79,8 +75,15 @@
             this.circle = circles[0];
         }
 
-        init () {
-            window.requestAnimationFrame(this.animationLoop);
+        init (canvas) {
+            this.context = canvas.context;
+            this.width = canvas.width;
+            this.height = canvas.height;
+            this.tick();
+        }
+
+        tick () {
+            window.requestAnimationFrame(this.animationLoop.bind(this));
         }
 
         setSpeed(speed) {
@@ -94,27 +97,27 @@
         animationLoop () {
             this.context.clearRect(0, 0, this.width, this.height);
             this.context.beginPath();
-            this.context.arc(this.circle.center.x, this.circle.center.y, circle.radius, 0, 2 * Math.PI);
+            this.context.arc(this.circle.center.x, this.circle.center.y, this.circle.radius, 0, 2 * Math.PI);
             this.context.stroke();
-            this.circle.center.y = this.circle.center.y + speed;
-            if (this.circle.y > this.height) {
-                this.circle.y = 0;
+            this.circle.center.y = this.circle.center.y + this.speed;
+            if (this.circle.center.y > this.height) {
+                this.circle.center.y = 0;
             }
+            this.tick();
         }
     }
 
     window.DotGame = window.DotGame || {};
-
     const canvas = new Canvas();
     const game = new Game(canvas);
-
     game.setSpeed(1);
 
     DotGame.handleClick = function handleCanvasClick () {
         game.makeMove(new Point(event.offsetX, event.offsetY));
     };
-
-    DotGame.init = game.init;
-
+    DotGame.init = function init () {
+        canvas.init();
+        game.init(canvas);
+    };
 
 })();
