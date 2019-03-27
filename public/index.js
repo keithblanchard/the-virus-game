@@ -66,62 +66,55 @@
 
     class Game {
 
-        constructor () {
+        constructor (canvas) {
+            this.context = canvas.context;
+            this.width = canvas.width;
+            this.height = canvas.height;
 
+            const circles = [];
+            const MAX_CIRCLES = 2;
+            for (let i = 0; i < MAX_CIRCLES; i++) {
+                circles.push(new Circle());
+            }
+            this.circle = circles[0];
         }
 
         init () {
-
+            window.requestAnimationFrame(this.animationLoop);
         }
 
-        loop () {
+        setSpeed(speed) {
+            this.speed = parseInt(speed);
+        }
 
+        makeMove(point) {
+            console.log(this.circle.contains(point));
+        }
+
+        animationLoop () {
+            this.context.clearRect(0, 0, this.width, this.height);
+            this.context.beginPath();
+            this.context.arc(this.circle.center.x, this.circle.center.y, circle.radius, 0, 2 * Math.PI);
+            this.context.stroke();
+            this.circle.center.y = this.circle.center.y + speed;
+            if (this.circle.y > this.height) {
+                this.circle.y = 0;
+            }
         }
     }
-
-    const canvas = new Canvas();
-
-
-    const circles = [];
-    const MAX_CIRCLES = 2;
-    for (let i = 0; i < MAX_CIRCLES; i++) {
-        circles.push(new Circle());
-    }
-
-    const circle = circles[0];
 
     window.DotGame = window.DotGame || {};
 
+    const canvas = new Canvas();
+    const game = new Game(canvas);
+
+    game.setSpeed(1);
+
     DotGame.handleClick = function handleCanvasClick () {
-        const point = new Point(event.offsetX, event.offsetY);
-        console.log(circle.contains(point));
+        game.makeMove(new Point(event.offsetX, event.offsetY));
     };
 
-
-    // Game loop
-
-    DotGame.init = function initCanvas () {
-        canvas.init();
-        const context = canvas.context;
-        const width = canvas.width;
-        const height = canvas.height;
-        let speed = 1;
-        function gameLoop () {
-           // console.log("loop");
-            context.clearRect(0, 0, width, height);
-            context.beginPath();
-            context.arc(circle.center.x, circle.center.y, circle.radius, 0, 2 * Math.PI);
-            context.stroke();
-            circle.center.y = circle.center.y + speed;
-            if (circle.y > height) {
-                circle.y = 0;
-            }
-            window.requestAnimationFrame(gameLoop);
-        }
-
-        window.requestAnimationFrame(gameLoop);
-    };
-
+    DotGame.init = game.init;
 
 
 })();
