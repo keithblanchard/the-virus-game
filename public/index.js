@@ -62,7 +62,7 @@
         }
 
         contains (point) {
-            return Point.distance(point, this.center) >= this.radius;
+            return Point.distance(point, this.center) <= this.radius;
         }
 
     }
@@ -103,9 +103,9 @@
             this.circles = this.circles.filter((circle)=> {
                 if (circle.contains(point)) {
                     this.score = this.score + 1;
-                    return true;
+                    return false; // remove
                 }
-                return false;
+                return true; // keep
             });
             document.querySelector(".dot-game-controls__score").innerHTML = this.score;
         }
@@ -115,6 +115,7 @@
             this.context.arc(circle.center.x, circle.center.y, circle.radius, 0, 2 * Math.PI);
             this.context.stroke();
         }
+
         tickCircle (circle) {
             if (circle.center.y > this.height) {
                 circle.center.y = 0;
