@@ -80,12 +80,11 @@
         }
 
         initCircles () {
-            const circles = [];
-            const MAX_CIRCLES = 1;
+            this.circles = [];
+            const MAX_CIRCLES = 10;
             for (let i = 0; i < MAX_CIRCLES; i++) {
-                circles.push(new Circle(this.width));
+                this.circles.push(new Circle(this.width));
             }
-            this.circle = circles[0];
         }
 
         tick () {
@@ -99,18 +98,27 @@
         }
 
         makeMove(point) {
-           // console.log(this.circle.contains(point));
+            //console.log(this.circle.contains(point));
+        }
+
+        drawCircle (circle) {
+            this.context.beginPath();
+            this.context.arc(circle.center.x, circle.center.y, circle.radius, 0, 2 * Math.PI);
+            this.context.stroke();
+        }
+        tickCircle (circle) {
+            if (circle.center.y > this.height) {
+                circle.center.y = 0;
+            }
+            circle.center.y = circle.center.y + this.speed;
         }
 
         animationLoop () {
             this.context.clearRect(0, 0, this.width, this.height);
-            this.context.beginPath();
-            this.context.arc(this.circle.center.x, this.circle.center.y, this.circle.radius, 0, 2 * Math.PI);
-            this.context.stroke();
-            this.circle.center.y = this.circle.center.y + this.speed;
-            if (this.circle.center.y > this.height) {
-                this.circle.center.y = 0;
-            }
+            this.circles.forEach((circle)=> {
+               this.drawCircle(circle) ;
+               this.tickCircle(circle) ;
+            });
             this.tick();
         }
     }
