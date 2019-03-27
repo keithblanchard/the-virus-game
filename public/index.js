@@ -31,27 +31,27 @@
             this.y = parseFloat(y);
         }
 
-        log () {
-            console.log("x: " + this.x + " y: " + this.y);
-        }
-
-
     }
 
     class Circle {
 
         constructor (maxX) {
             this.radius = this.getRandomCircleRadius();
-            const x = Math.floor(Math.random() * maxX - this.radius) + this.radius;
+
+            let x = Math.random() * maxX;
+            const padding = 10;
+            if (x < this.radius) {
+                x = this.radius + padding;
+            }
+            const realMax = maxX - this.radius;
+            if (x > realMax ) {
+                x = realMax - padding;
+            }
+
+            console.log(`Max X ${maxX}, X value ${x}, Radius ${this.radius}`);
+
             this.center = new Point(x, 0);
-            console.log("---------------------------");
-            console.log(maxX);
-            this.log();
 
-        }
-
-        log () {
-            console.log(`x: ${this.center.x} y: ${this.center.y} radius: ${this.radius}`);
         }
 
         /*
@@ -81,7 +81,7 @@
 
         initCircles () {
             const circles = [];
-            const MAX_CIRCLES = 2;
+            const MAX_CIRCLES = 1;
             for (let i = 0; i < MAX_CIRCLES; i++) {
                 circles.push(new Circle(this.width));
             }
@@ -99,7 +99,7 @@
         }
 
         makeMove(point) {
-            console.log(this.circle.contains(point));
+           // console.log(this.circle.contains(point));
         }
 
         animationLoop () {
@@ -122,10 +122,9 @@
 
     DotGame.handleClick = function handleCanvasClick () {
         const point = new Point(event.offsetX, event.offsetY);
-        console.log("Click Event");
-        point.log();
         game.makeMove(point);
     };
+
     DotGame.init = function init () {
         canvas.init();
         game.init(canvas);
