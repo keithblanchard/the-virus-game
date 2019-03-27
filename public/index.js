@@ -37,7 +37,7 @@
 
         constructor (maxX) {
             this.radius = this.getRandomCircleRadius();
-            console.log(radius);
+            console.log(this.radius);
             let x = Math.random() * maxX;
             const padding = 10;
             if (x < this.radius) {
@@ -100,8 +100,6 @@
         }
 
         getScore (radius) {
-            // Math.random() * (max - min) + min
-
             let score = (-0.1 * (2 * radius)) + 11;
             return Math.floor(score);
         }
