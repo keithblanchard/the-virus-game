@@ -83,7 +83,9 @@
         }
 
         tick () {
-            window.requestAnimationFrame(this.animationLoop.bind(this));
+            window.requestAnimationFrame(() => {
+                this.animationLoop();
+            });
         }
 
         setSpeed(speed) {
