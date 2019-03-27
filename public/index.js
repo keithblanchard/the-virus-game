@@ -48,8 +48,6 @@
                 x = realMax - padding;
             }
 
-            console.log(`Max X ${maxX}, X value ${x}, Radius ${this.radius}`);
-
             this.center = new Point(x, 0);
 
         }
@@ -70,6 +68,10 @@
     }
 
     class Game {
+
+        constructor () {
+            this.score = 0;
+        }
 
         init (canvas) {
             this.context = canvas.context;
@@ -99,8 +101,13 @@
 
         makeMove(point) {
             this.circles = this.circles.filter((circle)=> {
-                return circle.contains(point);
+                if (circle.contains(point)) {
+                    this.score = this.score + 1;
+                    return true;
+                }
+                return false;
             });
+            document.querySelector(".dot-game-controls__score").innerHTML = this.score;
         }
 
         drawCircle (circle) {
