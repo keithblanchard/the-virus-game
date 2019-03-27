@@ -37,7 +37,6 @@
 
         constructor (maxX) {
             this.radius = this.getRandomCircleRadius();
-            console.log(this.radius);
             let x = Math.random() * maxX;
             const padding = 10;
             if (x < this.radius) {
@@ -47,9 +46,7 @@
             if (x > realMax ) {
                 x = realMax - padding;
             }
-
             this.center = new Point(x, 0);
-
         }
 
         /*
@@ -81,11 +78,19 @@
             this.tick();
         }
 
+        /*
+         * Wait 1000ms before adding the first circle.
+         */
         initCircles () {
             this.circles = [];
             this.circles.push(new Circle(this.width));
             setInterval(() => {
                 this.circles.push(new Circle(this.width));
+            }, 1000);
+            setInterval(() => {
+                this.circles.forEach( (circle)=> {
+                    this.tickCircle(circle);
+                });
             }, 1000);
         }
 
@@ -95,14 +100,18 @@
             });
         }
 
+        addCircle () {
+            setTimeout(() => {
+                this.circles.push(new Circle(this.width));
+            }, 1000);
+        }
+
         setSpeed(speed) {
             this.speed = parseInt(speed);
         }
 
         getScore (radius) {
             let score = (-0.1 * (2 * radius)) + 11;
-            console.log("Diameter " + (2 * radius));
-            console.log("Score " + score);
             return Math.floor(score);
         }
 
@@ -110,6 +119,7 @@
             this.circles = this.circles.filter((circle)=> {
                 if (circle.contains(point)) {
                     this.score = this.score + this.getScore(circle.radius);
+                    this.addCircle();
                     return false; // remove
                 }
                 return true; // keep
@@ -127,6 +137,7 @@
             if (circle.center.y > this.height) {
                 circle.center.y = 0;
             }
+            console.log(this.speed);
             circle.center.y = circle.center.y + this.speed;
         }
 
@@ -134,7 +145,6 @@
             this.context.clearRect(0, 0, this.width, this.height);
             this.circles.forEach((circle)=> {
                this.drawCircle(circle) ;
-               this.tickCircle(circle) ;
             });
             this.tick();
         }
@@ -143,7 +153,7 @@
     window.DotGame = window.DotGame || {};
     const canvas = new Canvas();
     const game = new Game(canvas);
-    game.setSpeed(1);
+    game.setSpeed(50);
 
     DotGame.handleClick = function handleCanvasClick () {
         const point = new Point(event.offsetX, event.offsetY);
@@ -154,5 +164,9 @@
         canvas.init();
         game.init(canvas);
     };
+
+    DotGame.setSpeed = ((speed) => {
+        game.setSpeed(speed.value);
+    });
 
 })();

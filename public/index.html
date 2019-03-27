@@ -11,9 +11,11 @@
     <h1 class="dot-game-controls__score">0</h1>
     <input class="dot-game-controls__speed-control"
            type="range"
-           min="1"
+           min="10"
            max="100"
-           value="50">
+           value="50"
+           onchange="DotGame.setSpeed(this)"
+    >
     <div class="dot-game-controls__speed-control-label">Speed</div>
 </section>
 
