@@ -37,7 +37,6 @@
 
         constructor (maxX) {
             this.radius = this.getRandomCircleRadius();
-
             let x = Math.random() * maxX;
             const padding = 10;
             if (x < this.radius) {
@@ -99,10 +98,17 @@
             this.speed = parseInt(speed);
         }
 
+        getScore (radius) {
+            // Math.random() * (max - min) + min
+
+            let score = (-0.1 * (2 * radius)) + 11;
+            return Math.floor(score);
+        }
+
         makeMove(point) {
             this.circles = this.circles.filter((circle)=> {
                 if (circle.contains(point)) {
-                    this.score = this.score + 1;
+                    this.score = this.score + this.getScore(circle.radius);
                     return false; // remove
                 }
                 return true; // keep
