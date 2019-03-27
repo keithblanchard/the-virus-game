@@ -58,7 +58,7 @@
          * min diameter = 10
          */
         getRandomCircleRadius () {
-            return Math.floor(Math.random() * 50) + 5;
+           return Math.floor(Math.random() * (50 - 5) ) + 5;
         }
 
         contains (point) {
@@ -101,6 +101,8 @@
 
         getScore (radius) {
             let score = (-0.1 * (2 * radius)) + 11;
+            console.log("Diameter " + (2 * radius));
+            console.log("Score " + score);
             return Math.floor(score);
         }
 
