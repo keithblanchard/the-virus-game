@@ -37,6 +37,7 @@
 
         constructor (maxX) {
             this.radius = this.getRandomCircleRadius();
+            console.log(radius);
             let x = Math.random() * maxX;
             const padding = 10;
             if (x < this.radius) {
