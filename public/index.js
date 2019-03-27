@@ -137,7 +137,6 @@
             if (circle.center.y > this.height) {
                 circle.center.y = 0;
             }
-            console.log(this.speed);
             circle.center.y = circle.center.y + this.speed;
         }
 
