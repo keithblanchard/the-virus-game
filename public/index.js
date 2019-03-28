@@ -74,32 +74,38 @@
 
     class Game {
 
-        constructor(allowOverLap) {
+        constructor({allowOverLap, speed}) {
+            this.setSpeed(speed);
             this.allowOverLap = allowOverLap;
             this.score = 0;
-            this.smoothness = 10;
         }
 
         init(canvas) {
             this.context = canvas.context;
             this.width = canvas.width;
             this.height = canvas.height;
-            this.initCircles();
+
+            this.createCircles();
+            this.initCircleTickInterval();
             this.tick();
         }
+
+
 
         /*
          * Wait 1000ms before adding the first circle.
          */
-        initCircles() {
+        createCircles() {
             this.circles = [];
             this.circles.push(new Circle(this.width));
-
-            setInterval(() => {
+            this.addCircleInterval = setInterval(() => {
                 this.addCircle();
             }, 1000);
 
-            setInterval(() => {
+        }
+
+        initCircleTickInterval () {
+            this.tickCircleInterval = setInterval(() => {
                 this.circles.forEach((circle) => {
                     this.tickCircle(circle);
                 });
@@ -131,7 +137,15 @@
         }
 
         setSpeed(speed) {
-            this.speed = parseInt(speed);
+            let speedInt = parseInt(speed);
+            this.speed = speedInt;
+            this.smoothness = speedInt;
+        }
+
+        updateSpeed(speed) {
+            clearInterval(this.tickCircleInterval);
+            this.setSpeed(speed);
+            this.initCircleTickInterval();
         }
 
         getScore(radius) {
@@ -176,9 +190,11 @@
     }
 
     window.DotGame = window.DotGame || {};
-    const canvas = new Canvas();
-    const game = new Game(false);
-    game.setSpeed(50);
+    let canvas = new Canvas();
+    const game = new Game({
+        allowOverLap : false,
+        speed: 50
+    });
 
     window.DotGame.handleClick = function handleCanvasClick() {
         const point = new Point(event.offsetX, event.offsetY);
@@ -191,7 +207,7 @@
     };
 
     window.DotGame.setSpeed = ((speed) => {
-        game.setSpeed(speed.value);
+        game.updateSpeed(speed.value);
     });
 
 })();
