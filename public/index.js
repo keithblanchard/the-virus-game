@@ -74,10 +74,10 @@
 
     class Game {
 
-        constructor(allowOverLap, smoothness) {
+        constructor(allowOverLap) {
             this.allowOverLap = allowOverLap;
             this.score = 0;
-            this.smoothness = smoothness;
+            this.smoothness = 10;
         }
 
         init(canvas) {
@@ -177,7 +177,7 @@
 
     window.DotGame = window.DotGame || {};
     const canvas = new Canvas();
-    const game = new Game(false, 50);
+    const game = new Game(false);
     game.setSpeed(50);
 
     window.DotGame.handleClick = function handleCanvasClick() {
@@ -191,10 +191,7 @@
     };
 
     window.DotGame.setSpeed = ((speed) => {
-        const game = new Game(false, speed.value);
         game.setSpeed(speed.value);
-        canvas.init();
-        game.init(canvas);
     });
 
 })();
