@@ -2,7 +2,7 @@
 
     class Canvas {
 
-        init () {
+        init() {
             const $canvas = document.querySelector(".dot-game-canvas");
             const $controls = document.querySelector(".dot-game-controls");
             const userAgentMarginOffset = 24;
@@ -20,9 +20,9 @@
 
     class Point {
 
-        static distance(a, b) {
-            const dx = a.x - b.x;
-            const dy = a.y - b.y;
+        static distance(p1, p2) {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
             return Math.hypot(dx, dy);
         }
 
@@ -35,7 +35,15 @@
 
     class Circle {
 
-        constructor (maxX) {
+        static intersects(c1, c2) {
+            let distance = Point.distance(c1.center, c2.center);
+            let radiusSum = c1.radius + c2.radius;
+
+            return distance <= radiusSum;
+
+        }
+
+        constructor(maxX) {
             this.radius = this.getRandomCircleRadius();
             let x = Math.random() * maxX;
             const padding = 10; // Don't touch the side walls.
@@ -43,7 +51,7 @@
                 x = this.radius + padding;
             }
             const realMax = maxX - this.radius;
-            if (x > realMax ) {
+            if (x > realMax) {
                 x = realMax - padding;
             }
             this.center = new Point(x, 0);
@@ -54,11 +62,11 @@
          * max diameter = 100 or
          * min diameter = 10
          */
-        getRandomCircleRadius () {
-           return Math.floor(Math.random() * (50 - 5) ) + 5;
+        getRandomCircleRadius() {
+            return Math.floor(Math.random() * (50 - 5)) + 5;
         }
 
-        contains (point) {
+        contains(point) {
             return Point.distance(point, this.center) <= this.radius;
         }
 
@@ -66,12 +74,13 @@
 
     class Game {
 
-        constructor () {
+        constructor(allowOverLap) {
+            this.allowOverLap = allowOverLap;
             this.score = 0;
             this.smoothness = 10;
         }
 
-        init (canvas) {
+        init(canvas) {
             this.context = canvas.context;
             this.width = canvas.width;
             this.height = canvas.height;
@@ -82,45 +91,61 @@
         /*
          * Wait 1000ms before adding the first circle.
          */
-        initCircles () {
+        initCircles() {
             this.circles = [];
             this.circles.push(new Circle(this.width));
+
             setInterval(() => {
-                this.circles.push(new Circle(this.width));
+                this.addCircle();
             }, 1000);
+
             setInterval(() => {
-                this.circles.forEach( (circle)=> {
+                this.circles.forEach((circle) => {
                     this.tickCircle(circle);
                 });
-            }, 1000/this.smoothness);
+            }, 1000 / this.smoothness);
         }
 
-        tick () {
+        tick() {
             window.requestAnimationFrame(() => {
                 this.animationLoop();
             });
         }
 
-        addCircle () {
-            setTimeout(() => {
+        addCircle() {
+            let newCircle = new Circle(this.width);
+            if (this.allowOverLap) {
                 this.circles.push(new Circle(this.width));
-            }, 1000);
+            } else {
+                let addCircle = true;
+                this.circles.forEach((circle) => {
+                    if (Circle.intersects(circle, newCircle)) {
+                        addCircle = false;
+                        return;
+                    }
+                });
+                if (addCircle) {
+                    this.circles.push(newCircle);
+                }
+            }
         }
 
         setSpeed(speed) {
             this.speed = parseInt(speed);
         }
 
-        getScore (radius) {
+        getScore(radius) {
             let score = (-0.1 * (2 * radius)) + 11;
             return Math.floor(score);
         }
 
         makeMove(point) {
-            this.circles = this.circles.filter((circle)=> {
+            this.circles = this.circles.filter((circle) => {
                 if (circle.contains(point)) {
                     this.score = this.score + this.getScore(circle.radius);
-                    this.addCircle();
+                    setTimeout(() => {
+                        this.addCircle();
+                    }, 1000);
                     return false; // remove
                 }
                 return true; // keep
@@ -128,23 +153,23 @@
             document.querySelector(".dot-game-controls__score").innerHTML = this.score;
         }
 
-        drawCircle (circle) {
+        drawCircle(circle) {
             this.context.beginPath();
             this.context.arc(circle.center.x, circle.center.y, circle.radius, 0, 2 * Math.PI);
             this.context.stroke();
         }
 
-        tickCircle (circle) {
+        tickCircle(circle) {
             if (circle.center.y > this.height) {
-                circle.center.y = 0;
+                circle.center.y = -100;
             }
             circle.center.y = circle.center.y + Math.floor(this.speed / this.smoothness);
         }
 
-        animationLoop () {
+        animationLoop() {
             this.context.clearRect(0, 0, this.width, this.height);
-            this.circles.forEach((circle)=> {
-               this.drawCircle(circle) ;
+            this.circles.forEach((circle) => {
+                this.drawCircle(circle);
             });
             this.tick();
         }
@@ -152,15 +177,15 @@
 
     window.DotGame = window.DotGame || {};
     const canvas = new Canvas();
-    const game = new Game(canvas);
+    const game = new Game(false);
     game.setSpeed(50);
 
-    DotGame.handleClick = function handleCanvasClick () {
+    DotGame.handleClick = function handleCanvasClick() {
         const point = new Point(event.offsetX, event.offsetY);
         game.makeMove(point);
     };
 
-    DotGame.init = function init () {
+    DotGame.init = function init() {
         canvas.init();
         game.init(canvas);
     };
