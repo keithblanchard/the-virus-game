@@ -132,7 +132,6 @@
 
         setSpeed(speed) {
             this.speed = parseInt(speed);
-            this.smoothness = this.speed;
         }
 
         getScore(radius) {
@@ -178,7 +177,7 @@
 
     window.DotGame = window.DotGame || {};
     const canvas = new Canvas();
-    const game = new Game(false);
+    const game = new Game(false, 50);
     game.setSpeed(50);
 
     window.DotGame.handleClick = function handleCanvasClick() {
@@ -192,7 +191,7 @@
     };
 
     window.DotGame.setSpeed = ((speed) => {
-        const game = new Game(false);
+        const game = new Game(false, speed.value);
         game.setSpeed(speed.value);
         canvas.init();
         game.init(canvas);
