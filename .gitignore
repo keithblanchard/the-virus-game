@@ -1,3 +1,5 @@
 .idea
 node_modules
 *.iml
+public/index.css
+public/index.css.map
