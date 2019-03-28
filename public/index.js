@@ -180,17 +180,17 @@
     const game = new Game();
     game.setSpeed(50);
 
-    DotGame.handleClick = function handleCanvasClick() {
+    window.DotGame.handleClick = function handleCanvasClick() {
         const point = new Point(event.offsetX, event.offsetY);
         game.makeMove(point);
     };
 
-    DotGame.init = function init() {
+    window.DotGame.init = function init() {
         canvas.init();
         game.init(canvas);
     };
 
-    DotGame.setSpeed = ((speed) => {
+    window.DotGame.setSpeed = ((speed) => {
         game.setSpeed(speed.value);
     });
 
