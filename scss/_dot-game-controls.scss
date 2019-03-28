@@ -3,7 +3,7 @@
   width: 100%;
 
   min-height: 110px;
-  border: 2px solid black;
+  border: 2px solid $black;
 
   $left-margin : 20px;
 
@@ -23,7 +23,7 @@
       height: 0px;
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
-      border-top: 4px solid black;
+      border-top: 4px solid $black;
       margin-top: 6px;
       box-shadow: 0px -6px $black;
     }
