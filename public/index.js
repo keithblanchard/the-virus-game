@@ -177,7 +177,7 @@
 
     window.DotGame = window.DotGame || {};
     const canvas = new Canvas();
-    const game = new Game(false);
+    const game = new Game();
     game.setSpeed(50);
 
     DotGame.handleClick = function handleCanvasClick() {
