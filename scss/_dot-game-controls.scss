@@ -2,30 +2,38 @@
 
   width: 100%;
 
-  min-height: 110px;
+  min-height: 20vh;
   border: 2px solid $black;
 
-  $left-margin : 20px;
+  $left-margin: 5vh;
 
   &__score {
     margin-left: $left-margin;
     margin-bottom: unset;
+    font-size: 4vh;
   }
 
   &__speed-control {
-    margin-left: $left-margin;
     -webkit-appearance: none;
+
+    margin-top: 8vw;
+    margin-left: 10vw;
+
     background: $black;
-    height: 2px;
+
+    height: 1vh;
+    width: 50vw;
+
     &::-webkit-slider-thumb {
+      $thumbSize : 5vw;
       -webkit-appearance: none;
       width: 0px;
       height: 0px;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 4px solid $black;
-      margin-top: 6px;
-      box-shadow: 0px -6px $black;
+      border-left: $thumbSize solid transparent;
+      border-right: $thumbSize solid transparent;
+      border-top: $thumbSize solid $black;
+      margin-top: 6vw;
+      box-shadow: 0px -#{$thumbSize} $black;
     }
 
   }
@@ -34,8 +42,37 @@
     display: block;
     margin-left: $left-margin;
     margin-bottom: 20px;
-    font-size: 12px;
+    font-size: 3vh;
+    margin-top: 5vw;
   }
 
 }
 
+@media (pointer: fine) {
+
+  $left-margin : 20px;
+
+  .dot-game-controls {
+
+    min-height: 110px;
+
+    &__score l {
+      font-size: 18px;
+      margin-left: $left-margin;
+    }
+
+    &__speed-control {
+      height: 5px;
+      margin-left: $left-margin;
+
+      &::-webkit-slider-thumb {
+        $thumbSize : 6px;
+        border-left: $thumbSize solid transparent;
+        border-right: $thumbSize solid transparent;
+        border-top: $thumbSize solid #000000;
+        margin-top: 8px;
+        box-shadow: 0px -8px #000000;
+      }
+    }
+  }
+}
