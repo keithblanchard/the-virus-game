@@ -29,6 +29,7 @@
       border-left: $thumbSize solid transparent;
       border-right: $thumbSize solid transparent;
       border-top: $thumbSize solid $black;
+      border-bottom: 0px;
       margin-top: 6vw;
       box-shadow: 0px -#{$thumbSize} $black;
     }
