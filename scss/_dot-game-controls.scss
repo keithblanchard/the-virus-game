@@ -5,7 +5,7 @@
   min-height: 20vh;
   border: 2px solid $black;
 
-  $left-margin: 5vh;
+  $left-margin: 3vh;
 
   &__score {
     margin-left: $left-margin;
@@ -14,13 +14,10 @@
   }
 
   &__speed-control {
+    margin-left: $left-margin;
     -webkit-appearance: none;
-
-    margin-top: 8vw;
-    margin-left: 10vw;
-
+    margin-top: 8vw;;
     background: $black;
-
     height: 1vh;
     width: 50vw;
 
@@ -56,14 +53,19 @@
 
     min-height: 110px;
 
-    &__score l {
+    &__score {
       font-size: 18px;
+      margin-left: $left-margin;
+    }
+
+    &__speed-control-label {
       margin-left: $left-margin;
     }
 
     &__speed-control {
       height: 5px;
       margin-left: $left-margin;
+      margin-top: 20px;
 
       &::-webkit-slider-thumb {
         $thumbSize : 6px;
