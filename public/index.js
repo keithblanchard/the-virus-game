@@ -104,6 +104,12 @@
 
             }
 
+            pause (){
+                clearInterval(this.addCircleInterval);
+                clearInterval(this.tickCircleInterval);
+                cancelAnimationFrame(this.requestAnimationInterval);
+            }
+
             initCircleTickInterval () {
                 this.tickCircleInterval = setInterval(() => {
                     this.circles.forEach((circle) => {
@@ -113,7 +119,7 @@
             }
 
             tick() {
-                window.requestAnimationFrame(() => {
+                this.requestAnimationInterval = window.requestAnimationFrame(() => {
                     this.animationLoop();
                 });
             }
@@ -176,7 +182,7 @@
 
             tickCircle(circle) {
                 if (circle.center.y > this.height) {
-                    circle.center.y = -100;
+                   this.pause();
                 }
                 circle.center.y = circle.center.y + Math.floor(this.speed / this.smoothness);
             }
