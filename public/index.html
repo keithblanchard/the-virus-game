@@ -6,21 +6,15 @@
     <script src="/index.js"></script>
 </head>
 <body onload="window.DotGame.init()">
+<div class="game-wrapper">
+    <section class="dot-game-controls">
+        <h1>Score:&nbsp;</h1>
+        <h1 class="dot-game-controls__score">0</h1>
+    </section>
 
-<section class="dot-game-controls">
-    <h1 class="dot-game-controls__score">0</h1>
-    <input class="dot-game-controls__speed-control"
-           id="speed-control"
-           type="range"
-           min="10"
-           max="100"
-           value="50"
-           onchange="DotGame.setSpeed(this)"
-    >
-    <label class="dot-game-controls__speed-control-label" for="speed-control">Speed</label>
-</section>
+    <canvas class="dot-game-canvas" onmousedown="DotGame.handleClick()"></canvas>
+</div>
 
-<canvas class="dot-game-canvas" onmousedown="DotGame.handleClick()"></canvas>
 
 </body>
 </html>

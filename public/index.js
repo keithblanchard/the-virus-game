@@ -7,7 +7,7 @@
                 const $controls = document.querySelector(".dot-game-controls");
                 const userAgentMarginOffset = 24;
                 const width = window.innerWidth - userAgentMarginOffset;
-                const height = window.innerHeight - $controls.clientHeight - userAgentMarginOffset;
+                const height = window.innerHeight - userAgentMarginOffset - window.innerHeight * .2;
 
                 $canvas.setAttribute("width", width.toString());
                 $canvas.setAttribute("height", height.toString());
@@ -54,7 +54,7 @@
                 if (x > realMax) {
                     x = realMax - padding;
                 }
-                this.center = new Point(x, 0);
+                this.center = new Point(x, this.radius);
             }
 
             /*
@@ -157,6 +157,7 @@
                 this.circles = this.circles.filter((circle) => {
                     if (circle.contains(point)) {
                         this.score = this.score + this.getScore(circle.radius);
+                        this.speed++;
                         setTimeout(() => {
                             this.addCircle();
                         }, 1000);
@@ -193,7 +194,7 @@
         let canvas = new Canvas();
         const game = new Game({
             allowOverLap : false,
-            speed: 50
+            speed: 10
         });
 
         window.DotGame.handleClick = function handleCanvasClick() {
