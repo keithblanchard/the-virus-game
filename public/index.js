@@ -104,10 +104,12 @@
 
             }
 
-            pause (){
+            endGame (){
+                this.gameOver = true;
                 clearInterval(this.addCircleInterval);
                 clearInterval(this.tickCircleInterval);
                 cancelAnimationFrame(this.requestAnimationInterval);
+                document.querySelector('.game-over').innerHTML = 'Game Over';
             }
 
             initCircleTickInterval () {
@@ -182,7 +184,7 @@
 
             tickCircle(circle) {
                 if (circle.center.y > this.height) {
-                   this.pause();
+                   this.endGame();
                 }
                 circle.center.y = circle.center.y + Math.floor(this.speed / this.smoothness);
             }
@@ -204,8 +206,10 @@
         });
 
         window.DotGame.handleClick = function handleCanvasClick() {
-            const point = new Point(event.offsetX, event.offsetY);
-            game.makeMove(point);
+            if (!game.gameOver) {
+                const point = new Point(event.offsetX, event.offsetY);
+                game.makeMove(point);
+            }
         };
 
         window.DotGame.init = function init() {
