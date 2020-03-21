@@ -3,4 +3,5 @@ node_modules
 *.iml
 public/index.css
 public/index.css.map
-src/*.js
+public/*.js
+public/**/*.js
