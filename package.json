@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "sass": "node ./node_modules/sass/sass.js ./scss/index.scss ./public/index.css",
-    "build": "babel src/ -d public/",
-    "prepublish": "yarn run build"
+    "sass": "node ./node_modules/sass/sass.js ./scss/index.scss ./public/index.css"
   },
   "dependencies": {
     "express": "^4.15.0",
@@ -20,9 +18,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-flow": "^7.9.0",
-    "flow-bin": "^0.121.0"
+    "typescript": "^3.8.3"
   }
 }
