@@ -12,22 +12,23 @@
 <body onload="window.DotGame.init()">
 
 <!-- Load Images -->
-<div id="viruses">
-    <img id="virus0" src="./images/Green_Virus.png">
-    <img id="virus1" src="./images/Red_Virus.png">
-    <img id="virus2" src="./images/Blue_Virus.png">
-    <img id="virus3" src="./images/Yellow_Virus.png">
-    <img id="virus4" src="./images/Pink_Virus.png">
-</div>
-
-<div class="game-wrapper">
-    <secton class="game-status">
-        <h2 class="game-over"></h2>
-    </secton>
-    <section class="dot-game-controls">
+<section id="viruses">
+    <div class="dot-game-controls">
         <h1>Score:&nbsp;</h1>
         <h1 class="dot-game-controls__score">0</h1>
-    </section>
+    </div>
+    <div>
+        <img id="virus0" src="./images/Green_Virus.png">
+        <img id="virus1" src="./images/Red_Virus.png">
+        <img id="virus2" src="./images/Blue_Virus.png">
+        <img id="virus3" src="./images/Yellow_Virus.png">
+        <img id="virus4" src="./images/Pink_Virus.png">
+    </div>
+</section>
+<secton class="game-status">
+    <h2 class="game-over"></h2>
+</secton>
+<div class="game-wrapper">
     <canvas class="dot-game-canvas" onmousedown="DotGame.handleClick()"></canvas>
 </div>
 
