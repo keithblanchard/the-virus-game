@@ -3,13 +3,23 @@
 <head>
     <title>Dot Game</title>
     <link rel="stylesheet" type="text/css" href="/index.css">
-    <script type="module" src="/Canvas.js"></script>
-    <script type="module" src="/Point.js"></script>
-    <script type="module" src="/Circle.js"></script>
-    <script type="module" src="/Game.js"></script>
-    <script type="module" src="/index.js"></script>
+    <script type="module" src="/src/Canvas.js"></script>
+    <script type="module" src="/src/Point.js"></script>
+    <script type="module" src="/src/Circle.js"></script>
+    <script type="module" src="/src/Game.js"></script>
+    <script type="module" src="/src/index.js"></script>
 </head>
 <body onload="window.DotGame.init()">
+
+<!-- Load Images -->
+<div id="viruses">
+    <img id="virus0" src="./images/Green_Virus.png">
+    <img id="virus1" src="./images/Red_Virus.png">
+    <img id="virus2" src="./images/Blue_Virus.png">
+    <img id="virus3" src="./images/Yellow_Virus.png">
+    <img id="virus4" src="./images/Pink_Virus.png">
+</div>
+
 <div class="game-wrapper">
     <secton class="game-status">
         <h2 class="game-over"></h2>
@@ -18,7 +28,6 @@
         <h1>Score:&nbsp;</h1>
         <h1 class="dot-game-controls__score">0</h1>
     </section>
-
     <canvas class="dot-game-canvas" onmousedown="DotGame.handleClick()"></canvas>
 </div>
 

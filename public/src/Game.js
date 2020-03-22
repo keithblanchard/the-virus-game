@@ -7,6 +7,7 @@ export default class Game {
     this.setSpeed(speed);
     this.allowOverLap = allowOverLap;
     this.score = 0;
+    this.virusIndex = 0;
   }
 
   init(canvas) {
@@ -106,9 +107,19 @@ export default class Game {
   }
 
   drawCircle(circle) {
-    this.context.beginPath();
-    this.context.arc(circle.center.x, circle.center.y, circle.radius, 0, 2 * Math.PI);
-    this.context.stroke();
+    if (!circle.image) {
+      circle.image = document.getElementById(`virus${this.virusIndex}`);
+      this.virusIndex++;
+      if (this.virusIndex > 4) {
+        this.virusIndex = 0;
+      }
+    }
+
+    this.context.drawImage(
+        circle.image,circle.center.x,
+        circle.center.y,
+        circle.radius,
+        circle.radius);
   }
 
   tickCircle(circle) {

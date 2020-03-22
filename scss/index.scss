@@ -1,13 +1,13 @@
 @import "colors";
-@import "dot-game-canvas";
 @import "dot-game-controls";
 
 body {
   background-color: black;
+  color: white;
 }
 
 .game-wrapper {
-  background-color: white;
+  background-color: black;
 }
 
 .game-status {
@@ -19,4 +19,14 @@ body {
   margin-right: auto;
   color: red;
 }
+
+#viruses {
+  display:flex;
+  justify-content: center;
+  img {
+    margin: 20px;
+  }
+}
+
+
 
