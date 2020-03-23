@@ -31,7 +31,7 @@ export default class Circle {
 
 
   getRandomCircleRadius() {
-    return Math.floor(Math.random() * (50 - 5)) + 5;
+    return Math.floor(Math.random() * (100 - 50)) + 50;
   }
 
   contains(point) {

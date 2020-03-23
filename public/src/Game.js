@@ -88,7 +88,7 @@ export default class Game {
   }
 
   getScore(radius) {
-    let score = -0.1 * (2 * radius) + 11;
+    let score = 0.1 * (2 * radius) + 11;
     return Math.floor(score);
   }
 
@@ -96,7 +96,7 @@ export default class Game {
     this.circles = this.circles.filter(circle => {
       if (circle.contains(point)) {
         this.score = this.score + this.getScore(circle.radius);
-        this.speed++;
+        this.speed = this.speed + 2;
         setTimeout(() => {
           this.addCircle();
         }, 1000);
@@ -125,7 +125,7 @@ export default class Game {
   }
 
   tickCircle(circle) {
-    if (circle.center.y > this.height) {
+    if (circle.center.y + circle.radius >= this.height) {
       this.endGame();
     }
 

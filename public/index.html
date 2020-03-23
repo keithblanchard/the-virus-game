@@ -9,7 +9,7 @@
     <script type="module" src="/src/Game.js"></script>
     <script type="module" src="/src/index.js"></script>
 </head>
-<body onload="window.DotGame.init()">
+<body>
 
 <!-- Load Images -->
 <section id="viruses">
@@ -17,7 +17,7 @@
         <h1>Score:&nbsp;</h1>
         <h1 class="dot-game-controls__score">0</h1>
     </div>
-    <div>
+    <div style="display: none">
         <img id="virus0" src="./images/Green_Virus.png">
         <img id="virus1" src="./images/Red_Virus.png">
         <img id="virus2" src="./images/Blue_Virus.png">
@@ -31,8 +31,14 @@
 <secton class="game-status">
     <h2 class="game-over"></h2>
 </secton>
+<secton id="controls">
+    <button id="start-button" type="button" onclick="DotGame.init();">Start</button>
+</secton>
 <div class="game-wrapper">
     <canvas class="dot-game-canvas" onmousedown="DotGame.handleClick()"></canvas>
+</div>
+<div id="floor">
+
 </div>
 </body>
 </html>

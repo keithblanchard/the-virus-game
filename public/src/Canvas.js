@@ -4,7 +4,7 @@ export default class {
     const $controls = document.querySelector(".dot-game-controls");
     const userAgentMarginOffset = 24;
     const width = window.innerWidth - userAgentMarginOffset;
-    const height = window.innerHeight - userAgentMarginOffset - window.innerHeight * .2;
+    const height = window.innerHeight - userAgentMarginOffset - window.innerHeight * .4;
     $canvas.setAttribute("width", width.toString());
     $canvas.setAttribute("height", height.toString());
     this.height = $canvas.height;
