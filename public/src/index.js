@@ -12,6 +12,8 @@ import Point from './Point.js'
 
   window.DotGame.handleClick = function handleCanvasClick() {
     if (!game.gameOver) {
+      const sound = document.getElementById('sound');
+      sound.play();
       const point = new Point(event.offsetX, event.offsetY);
       game.makeMove(point);
     }

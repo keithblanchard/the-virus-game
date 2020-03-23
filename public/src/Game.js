@@ -37,6 +37,8 @@ export default class Game {
     clearInterval(this.tickCircleInterval);
     cancelAnimationFrame(this.requestAnimationInterval);
     document.querySelector('.game-over').innerHTML = 'Game Over';
+    const sound = document.getElementById('sound');
+    sound.pause();
   }
 
   initCircleTickInterval() {
