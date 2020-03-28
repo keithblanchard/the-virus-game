@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dot Game</title>
+    <title>Virus Invaders</title>
     <link rel="stylesheet" type="text/css" href="/index.css">
     <script type="module" src="/src/Canvas.js"></script>
     <script type="module" src="/src/Point.js"></script>
@@ -9,36 +9,38 @@
     <script type="module" src="/src/Game.js"></script>
     <script type="module" src="/src/index.js"></script>
 </head>
-<body>
-
+<body onload="window.DotGame.onLoad()">
 <!-- Load Images -->
-<section id="viruses">
-    <div class="dot-game-controls">
-        <h1>Score:&nbsp;</h1>
-        <h1 class="dot-game-controls__score">0</h1>
+<div style="display: none">
+    <img id="virus0" src="./images/Green_Virus.png">
+    <img id="virus1" src="./images/Red_Virus.png">
+    <img id="virus2" src="./images/Blue_Virus.png">
+    <img id="virus3" src="./images/Yellow_Virus.png">
+    <img id="virus4" src="./images/Pink_Virus.png">
+</div>
+<audio autoplay id="sound">
+    <source src="./audio/Guns-in-Dm.m4a" type="audio/mp4">
+</audio>
+
+<section class="header">
+    <div class="score">
+        <div id="score">0</div>
+        <div>
+            <div>High Score</div>
+            <div id="high-score">800</div>
+        </div>
     </div>
-    <div style="display: none">
-        <img id="virus0" src="./images/Green_Virus.png">
-        <img id="virus1" src="./images/Red_Virus.png">
-        <img id="virus2" src="./images/Blue_Virus.png">
-        <img id="virus3" src="./images/Yellow_Virus.png">
-        <img id="virus4" src="./images/Pink_Virus.png">
-    </div>
-    <audio autoplay id="sound">
-        <source src="./audio/Guns-in-Dm.m4a" type="audio/mp4">
-    </audio>
+    <select id="resolutions"></select>
 </section>
 <secton class="game-status">
     <h2 class="game-over"></h2>
 </secton>
-<secton id="controls">
-    <button id="start-button" type="button" onclick="DotGame.init();">Start</button>
-</secton>
-<div class="game-wrapper">
-    <canvas class="dot-game-canvas" onmousedown="DotGame.handleClick()"></canvas>
-</div>
-<div id="floor">
 
-</div>
+<section class="game-wrapper">
+    <secton class="controls">
+        <button id="start-button" type="button" onclick="DotGame.init();">Start</button>
+    </secton>
+    <canvas class="canvas" id="canvas" onmousedown="DotGame.handleClick()"></canvas>
+</section>
 </body>
 </html>

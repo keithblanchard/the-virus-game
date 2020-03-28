@@ -1,7 +1,6 @@
 export default class {
   init() {
-    const $canvas = document.querySelector(".dot-game-canvas");
-    const $controls = document.querySelector(".dot-game-controls");
+    const $canvas = document.getElementById('canvas');
     const userAgentMarginOffset = 24;
     const width = window.innerWidth - userAgentMarginOffset;
     const height = window.innerHeight - userAgentMarginOffset - window.innerHeight * .4;

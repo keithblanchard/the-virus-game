@@ -1,0 +1,15 @@
+.score {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 15%;
+  #score {
+    margin-left: 0;
+    margin-right: 3rem;
+    justify-self: flex-start;
+  }
+  #high-score {
+    text-align: center;
+  }
+}

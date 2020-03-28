@@ -1,13 +1,15 @@
-@import "colors";
+@import 'form/select';
+@import 'header';
+@import 'score';
+@import 'game-wrapper';
+@import 'canvas';
 
 body {
   background-color: black;
   color: white;
-  font-size: 50px;
-}
-
-.game-wrapper {
-  background-color: black;
+  font-size: xx-large;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .game-status {
@@ -19,35 +21,13 @@ body {
   color: red;
 }
 
-#viruses {
-  display:flex;
-  justify-content: space-between;
-  img {
-    margin: 20px;
-  }
-}
-
-.dot-game-controls {
-  display: flex;
-  h1 {
-    color: white;
-  }
-}
-
-#controls {
+.controls {
   display: flex;
   justify-content: center;
   width: 100%;
   button {
-    font-size: 50px;
+    font-size: 5rem;
   }
-}
-
-#floor {
-  width: 100%;
-  height: 50px;
-  background: red;
-  display: none;
 }
 
 

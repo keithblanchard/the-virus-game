@@ -105,7 +105,7 @@ export default class Game {
 
       return true; // keep
     });
-    document.querySelector(".dot-game-controls__score").innerHTML = this.score;
+    document.getElementById("score").innerHTML = this.score;
   }
 
   drawCircle(circle) {

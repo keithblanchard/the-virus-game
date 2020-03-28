@@ -1,6 +1,7 @@
 import Canvas from './Canvas.js';
 import Game from './Game.js';
 import Point from './Point.js'
+import select from './form/select.js';
 
 (function () {
   window.DotGame = window.DotGame || {};
@@ -17,14 +18,20 @@ import Point from './Point.js'
     }
   };
 
+  window.DotGame.onLoad = function onLoad () {
+     select.init({
+       storeName: 'resolutions',
+       jsonURL: 'src/resolutions.json',
+       elementSelector: '#resolutions'
+     });
+  };
+
   window.DotGame.init = function init() {
     const startButton = document.getElementById('start-button');
     startButton.style.display = 'none';
     const sound = document.getElementById('sound');
     sound.play();
     canvas.init();
-    const floor = document.getElementById('floor');
-    floor.style.display = 'block';
     game.init(canvas);
 
   };
@@ -33,11 +40,4 @@ import Point from './Point.js'
     game.updateSpeed(speed.value);
   };
 
-  window.DotGame.reset = function () {
-    canvas = new Canvas();
-    game = new Game({
-      allowOverLap: false,
-      speed: 10
-    });
-  };
 })();
