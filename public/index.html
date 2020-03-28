@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Virus Invaders</title>
+    <title>Virus Invasion</title>
     <link rel="stylesheet" type="text/css" href="/index.css">
     <script type="module" src="/src/Canvas.js"></script>
     <script type="module" src="/src/Point.js"></script>
@@ -10,14 +10,7 @@
     <script type="module" src="/src/index.js"></script>
 </head>
 <body onload="window.DotGame.onLoad()">
-<!-- Load Images -->
-<div style="display: none">
-    <img id="virus0" src="./images/Green_Virus.png">
-    <img id="virus1" src="./images/Red_Virus.png">
-    <img id="virus2" src="./images/Blue_Virus.png">
-    <img id="virus3" src="./images/Yellow_Virus.png">
-    <img id="virus4" src="./images/Pink_Virus.png">
-</div>
+
 <audio autoplay id="sound">
     <source src="./audio/Guns-in-Dm.m4a" type="audio/mp4">
 </audio>
@@ -28,15 +21,23 @@
             <div id="score">0</div>
             <div>
                 <div>High Score</div>
-                <div id="high-score">800</div>
+                <div id="high-score"></div>
             </div>
         </div>
     </section>
-    <secton id="game-over" class="game-status">
-        <h2 class="game-over" style="display: none;">Game Over</h2>
+    <secton class="game-status">
+        <h2 id="game-over" class="game-over" style="display: none;">Game Over</h2>
     </secton>
-    <secton class="controls">
+    <secton id="controls" class="controls">
+        <h1>Virus Invasion</h1>
         <button id="start-button" type="button" onclick="DotGame.init();">Start</button>
+        <div class="virus">
+            <img id="virus0" src="./images/Green_Virus.png">
+            <img id="virus1" src="./images/Red_Virus.png">
+            <img id="virus2" src="./images/Blue_Virus.png">
+            <img id="virus3" src="./images/Yellow_Virus.png">
+            <img id="virus4" src="./images/Pink_Virus.png">
+        </div>
     </secton>
 </secton>
 

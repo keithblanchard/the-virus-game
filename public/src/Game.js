@@ -7,6 +7,7 @@ export default class Game {
     this.setSpeed(speed);
     this.allowOverLap = allowOverLap;
     this.score = 0;
+    this.highScore = 0;
     this.virusIndex = 0;
   }
 
@@ -36,7 +37,11 @@ export default class Game {
     clearInterval(this.addCircleInterval);
     clearInterval(this.tickCircleInterval);
     cancelAnimationFrame(this.requestAnimationInterval);
-    document.getElementById('game-over').display = 'block';
+
+    document.getElementById('game-over').style.display = 'block';
+    document.getElementById('controls').style.display = 'flex';
+    document.getElementById('canvas').style.display = 'none';
+
 
     const sound = document.getElementById('sound');
     sound.pause();
@@ -94,10 +99,18 @@ export default class Game {
   }
 
   makeMove(point) {
+    let highScore = localStorage.getItem('high-score');
+    if (!highScore) {
+      highScore = 0;
+    }
     this.circles = this.circles.filter(circle => {
       if (circle.contains(point)) {
         this.score = this.score + this.getScore(circle.radius);
-       this.setSpeed(this.speed + 2);
+
+        if (this.score > highScore) {
+          highScore = this.score;
+        }
+        this.speed = this.speed + 2;
         setTimeout(() => {
           this.addCircle();
         }, 1000);
@@ -107,6 +120,8 @@ export default class Game {
       return true; // keep
     });
     document.getElementById("score").innerHTML = this.score;
+    document.getElementById("high-score").innerHTML = highScore;
+    localStorage.setItem('high-score', highScore);
   }
 
   drawCircle(circle) {

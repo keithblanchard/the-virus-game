@@ -1,0 +1,11 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+  width: 100%;
+  color: red;
+  button {
+    font-size: 5rem;
+  }
+}

@@ -6,13 +6,9 @@ window.onresize = function () {
     window.location.reload();
 };
 
-
 window.DotGame = window.DotGame || {};
-let canvas = new Canvas();
-let game = new Game({
-    allowOverLap: false,
-    speed: 10
-});
+
+let game;
 
 window.DotGame.handleClick = function handleCanvasClick() {
     if (!game.gameOver) {
@@ -21,13 +17,25 @@ window.DotGame.handleClick = function handleCanvasClick() {
     }
 };
 
-window.DotGame.onLoad = function onLoad() {
-
-};
+window.DotGame.onLoad = function onLoad () {
+    const highScore = localStorage.getItem('high-score');
+    if (highScore) {
+        document.getElementById("high-score").innerHTML = highScore;
+    } else {
+        document.getElementById("high-score").innerHTML = '0';
+    }
+}
 
 window.DotGame.init = function init() {
-    const startButton = document.getElementById('start-button');
-    startButton.style.display = 'none';
+    let canvas = new Canvas();
+    game = new Game({
+        allowOverLap: false,
+        speed: 10
+    });
+    document.getElementById('controls').style.display = 'none';
+    document.getElementById('game-over').style.display = 'none';
+    document.getElementById('canvas').style.display = 'block';
+    document.getElementById('score').innerHTML = '0';
     const sound = document.getElementById('sound');
     sound.play();
     canvas.init();

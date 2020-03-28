@@ -1,9 +1,10 @@
-@import 'form/select';
 @import 'header';
 @import 'score';
 @import 'game-wrapper';
 @import 'ui-wrapper';
-
+@import 'controls';
+@import 'virus';
+@import 'game-status';
 body {
   background-color: black;
   color: white;
@@ -12,23 +13,10 @@ body {
   padding: 0 !important;
 }
 
-.game-status {
-  display: flex;
-}
 .game-over {
   margin-left: auto;
   margin-right: auto;
   color: red;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
-  width: 100%;
-  button {
-    font-size: 5rem;
-  }
 }
 
 

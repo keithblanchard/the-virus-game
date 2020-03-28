@@ -18,6 +18,7 @@ export default class {
     this.width = $canvas.width;
     this.context = $canvas.getContext("2d");
     $canvas.style.borderBottom = `solid ${canvasBorderOffset}px red`;
+    $canvas.style.display = 'block';
   }
 
 }
