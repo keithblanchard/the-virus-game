@@ -1,4 +1,5 @@
 import Circle from './Circle.js';
+import {setPreviousHighScore} from './score.js';
 
 export default class Game {
     constructor({
@@ -42,6 +43,7 @@ export default class Game {
         document.getElementById('canvas').style.display = 'none';
 
 
+        setPreviousHighScore(this.score);
         const sound = document.getElementById('sound');
         sound.load();
     }

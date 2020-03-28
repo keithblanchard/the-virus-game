@@ -1,6 +1,7 @@
 import Canvas from './Canvas.js';
 import Game from './Game.js';
 import Point from './Point.js'
+import score from './score.js';
 
 window.onresize = function () {
     window.location.reload();
@@ -18,15 +19,11 @@ window.DotGame.handleClick = function handleCanvasClick() {
 };
 
 window.DotGame.onLoad = function onLoad () {
-    const highScore = localStorage.getItem('high-score');
-    if (highScore) {
-        document.getElementById("high-score").innerHTML = highScore;
-    } else {
-        document.getElementById("high-score").innerHTML = '0';
-    }
-}
+    score.init();
+};
 
 window.DotGame.init = function init() {
+    score.init();
     let canvas = new Canvas();
     game = new Game({
         speed: 10
