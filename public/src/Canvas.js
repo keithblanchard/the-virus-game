@@ -4,7 +4,12 @@ export default class {
     const $uiWrapper = document.getElementById('ui-wrapper');
     const $uiWrapperHeight = window.getComputedStyle($uiWrapper).height;
 
-    const width = window.innerWidth;
+    let computedWidth = window.innerWidth;
+    if (computedWidth > 1024) {
+      computedWidth = 1024;
+    }
+    const width = computedWidth;
+
     const canvasBorderOffset = 80;
     const height = window.innerHeight - parseFloat($uiWrapperHeight) - canvasBorderOffset;
     $canvas.setAttribute("width", width.toString());
@@ -12,6 +17,7 @@ export default class {
     this.height = $canvas.height;
     this.width = $canvas.width;
     this.context = $canvas.getContext("2d");
+    $canvas.style.borderBottom = `solid ${canvasBorderOffset}px red`;
   }
 
 }
