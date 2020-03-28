@@ -29,7 +29,6 @@ window.DotGame.onLoad = function onLoad () {
 window.DotGame.init = function init() {
     let canvas = new Canvas();
     game = new Game({
-        allowOverLap: false,
         speed: 10
     });
     document.getElementById('controls').style.display = 'none';
