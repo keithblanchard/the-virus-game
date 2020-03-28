@@ -19,11 +19,7 @@ import select from './form/select.js';
   };
 
   window.DotGame.onLoad = function onLoad () {
-     select.init({
-       storeName: 'resolutions',
-       jsonURL: 'src/resolutions.json',
-       elementSelector: '#resolutions'
-     });
+
   };
 
   window.DotGame.init = function init() {
