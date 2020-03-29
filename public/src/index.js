@@ -19,15 +19,15 @@ window.DotGame.handleClick = function handleCanvasClick() {
 };
 
 window.DotGame.onLoad = function onLoad () {
-    score.init();
-};
-
-window.DotGame.init = function init() {
-    score.init();
-    let canvas = new Canvas();
     game = new Game({
         speed: 10
     });
+    score.initHighScore();
+};
+
+window.DotGame.init = function init() {
+    score.init(game.score);
+    let canvas = new Canvas();
     document.getElementById('controls').style.display = 'none';
     document.getElementById('game-over').style.display = 'none';
     document.getElementById('game-status').style.display = 'none';

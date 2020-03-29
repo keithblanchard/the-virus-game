@@ -1,21 +1,21 @@
 import Circle from './Circle.js';
-import {setPreviousHighScore} from './score.js';
 
 export default class Game {
-    constructor({
-                    allowOverLap,
-                    speed
-                }) {
-        this.setSpeed(speed);
+    constructor({speed}) {
+        this.initalSpeed = speed;
         this.score = 0;
-        this.highScore = 0;
-        this.virusIndex = 0;
+        this.gameOver = false;
     }
 
     init(canvas) {
         this.context = canvas.context;
         this.width = canvas.width;
         this.height = canvas.height;
+        this.height = canvas.height;
+        this.score = 0;
+        this.gameOver = false;
+        this.virusIndex = 0;
+        this.setSpeed(this.initalSpeed);
         this.createCircles();
         this.initCircleTickInterval();
         this.tick();
@@ -42,8 +42,6 @@ export default class Game {
         document.getElementById('controls').style.display = 'flex';
         document.getElementById('canvas').style.display = 'none';
 
-
-        setPreviousHighScore(this.score);
         const sound = document.getElementById('sound');
         sound.pause();
         sound.currentTime = 0.0;
@@ -102,22 +100,20 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-
-                if (this.score > highScore) {
-                    highScore = this.score;
-                }
                 this.speed = this.speed + 2;
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);
                 return false; // remove
             }
-
             return true; // keep
         });
-        document.getElementById("score").innerHTML = this.score;
-        document.getElementById("high-score").innerHTML = highScore;
-        localStorage.setItem('high-score', highScore);
+
+        const scoreElement = document.getElementById("score");
+        scoreElement.innerHTML = this.score;
+        if (this.score > highScore) {
+            scoreElement.style.color = 'gold';
+        }
     }
 
     drawCircle(circle) {

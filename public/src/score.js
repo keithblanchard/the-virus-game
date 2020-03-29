@@ -1,5 +1,4 @@
-function initHighScore () {
-    const highScore = localStorage.getItem('high-score');
+function initHighScore (highScore) {
     if (highScore) {
         document.getElementById("high-score").innerHTML = highScore;
     } else {
@@ -7,29 +6,20 @@ function initHighScore () {
     }
 }
 
-function initPreviousHighScore () {
-    let previousHighScore = localStorage.getItem('previous-high-score');
-    if (parseInt(previousHighScore)) {
-        document.getElementById("previous-high-score").innerHTML = previousHighScore;
-    } else {
-        previousHighScore = '0';
+export function setHighScore (score) {
+    const highScore = localStorage.getItem('high-score');
+    if (parseInt(score) > parseInt(highScore)) {
+        localStorage.setItem('high-score', score);
     }
-    localStorage.setItem('previous-high-score', previousHighScore);
-    document.getElementById("previous-high-score").innerHTML = previousHighScore;
+    parseInt(highScore);
 }
 
-export function setPreviousHighScore (score) {
-    const previousHighScore = localStorage.getItem('previous-high-score');
-    if (parseInt(score) > parseInt(previousHighScore)) {
-        localStorage.setItem('previous-high-score', score);
-    }
-}
-
-export function init () {
-    initHighScore();
-    initPreviousHighScore();
+export function init (score) {
+    document.getElementById("score").style.color = 'white';
+    initHighScore(setHighScore(score));
 }
 
 export default {
-    init
+    init,
+    initHighScore
 };
