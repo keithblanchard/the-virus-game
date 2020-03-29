@@ -1,8 +1,8 @@
 import Circle from './Circle.js';
 
 export default class Game {
-    constructor({speed}) {
-        this.initalSpeed = speed;
+    constructor() {
+        this.initalSpeed = 100;
         this.score = 0;
         this.gameOver = false;
     }
@@ -100,7 +100,7 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-                this.speed = this.speed + 2;
+                this.speed = this.speed + 5;
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);

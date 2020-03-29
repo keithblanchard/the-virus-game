@@ -1,4 +1,5 @@
-function initHighScore (highScore) {
+function initHighScore () {
+    const highScore = localStorage.getItem('high-score');
     if (highScore) {
         document.getElementById("high-score").innerHTML = highScore;
     } else {
@@ -16,7 +17,8 @@ export function setHighScore (score) {
 
 export function init (score) {
     document.getElementById("score").style.color = 'white';
-    initHighScore(setHighScore(score));
+    setHighScore(score);
+    initHighScore();
 }
 
 export default {

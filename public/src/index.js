@@ -19,9 +19,7 @@ window.DotGame.handleClick = function handleCanvasClick() {
 };
 
 window.DotGame.onLoad = function onLoad () {
-    game = new Game({
-        speed: 10
-    });
+    game = new Game();
     score.initHighScore();
 };
 
