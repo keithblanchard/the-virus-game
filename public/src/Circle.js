@@ -21,15 +21,14 @@ export default class Circle {
       x = realMax - padding;
     }
 
-    this.center = new Point(x, this.radius);
+    this.center = new Point(x, 0);
   }
+
   /*
    * Returns a circle radius with a
    * max diameter = 100 or
    * min diameter = 10
    */
-
-
   getRandomCircleRadius() {
     return Math.floor(Math.random() * (100 - 50)) + 50;
   }

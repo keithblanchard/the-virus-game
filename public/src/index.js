@@ -30,6 +30,7 @@ window.DotGame.init = function init() {
     });
     document.getElementById('controls').style.display = 'none';
     document.getElementById('game-over').style.display = 'none';
+    document.getElementById('game-status').style.display = 'none';
     document.getElementById('canvas').style.display = 'block';
     document.getElementById('score').innerHTML = '0';
     const sound = document.getElementById('sound');
