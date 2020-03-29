@@ -45,7 +45,8 @@ export default class Game {
 
         setPreviousHighScore(this.score);
         const sound = document.getElementById('sound');
-        sound.load();
+        sound.pause();
+        sound.currentTime = 0.0;
     }
 
     initCircleTickInterval() {

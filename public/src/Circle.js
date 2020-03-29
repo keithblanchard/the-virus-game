@@ -21,7 +21,7 @@ export default class Circle {
       x = realMax - padding;
     }
 
-    this.center = new Point(x, 0);
+    this.center = new Point(x, 10);
   }
 
   /*

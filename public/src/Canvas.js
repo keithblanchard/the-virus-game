@@ -10,7 +10,7 @@ export default class {
     }
     const width = computedWidth;
 
-    const canvasBorderOffset = 40;
+    const canvasBorderOffset = 80;
     const height = window.innerHeight - parseFloat($uiWrapperHeight) - canvasBorderOffset;
     $canvas.setAttribute("width", width.toString());
     $canvas.setAttribute("height", height.toString());
