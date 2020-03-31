@@ -6,13 +6,15 @@
   "scripts": {
     "start": "node server.js",
     "sass": "node ./node_modules/sass/sass.js ./scss/index.scss ./public/index.css",
-    "rollup": "./node_modules/rollup/dist/bin/rollup ./public/src/index.js --file ./dist/index.js --format iife"
+    "rollup": "./node_modules/rollup/dist/bin/rollup ./public/src/index.js --file ./pre-dist/index.js --format iife",
+    "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output ./dist/index.js --compress --mangle -- ./pre-dist/index.js"
   },
   "dependencies": {
     "express": "^4.15.0",
     "pixi.js": "^5.2.1",
     "rollup": "^2.3.1",
-    "sass": "^1.17.3"
+    "sass": "^1.17.3",
+    "uglify-es": "^3.3.9"
   },
   "keywords": [
     "node",
