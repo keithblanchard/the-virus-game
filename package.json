@@ -11,9 +11,10 @@
     "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output ./dist/index.js --compress --mangle -- ./pre-dist/index.js",
     "copyCSS": "cp ./public/index.css ./dist/index.css",
     "copyHTML": "cp -R ./public/root.html ./dist/root.html",
+    "copyIndexHTML": "cp ./public/prod-index.html ./dist/index.html",
     "copyAudio": "cp -R ./public/audio ./dist/audio",
     "copyGraphics": "cp -R ./public/images ./dist/images",
-    "copyAll": "npm run copyCSS && npm run copyHTML && npm run copyAudio && npm run copyGraphics",
+    "copyAll": "npm run copyCSS && npm run copyHTML && npm run copyAudio && npm run copyGraphics && npm run copyIndexHTML",
     "build": "npm-run-all sass rollup uglifyjs copyAll"
   },
   "dependencies": {
