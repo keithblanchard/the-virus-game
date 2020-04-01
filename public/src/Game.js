@@ -1,4 +1,7 @@
 import Circle from './Circle.js';
+import score from './score.js';
+
+const { setHighScore } = score;
 
 export default class Game {
     constructor() {
@@ -45,6 +48,10 @@ export default class Game {
         const sound = document.getElementById('sound');
         sound.pause();
         sound.currentTime = 0.0;
+
+        setHighScore(this.score);
+
+
     }
 
     initCircleTickInterval() {
@@ -100,7 +107,7 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-                this.speed = this.speed + 5;
+                this.speed = this.speed + 3;
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);

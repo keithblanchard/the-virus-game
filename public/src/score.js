@@ -7,21 +7,24 @@ function initHighScore () {
     }
 }
 
-export function setHighScore (score) {
-    const highScore = localStorage.getItem('high-score');
-    if (parseInt(score) > parseInt(highScore)) {
+function setHighScore (score) {
+    const highScore = parseInt(localStorage.getItem('high-score'));
+    const intHighScore = highScore ? highScore : 0;
+    const parseScore = parseInt(score);
+    const intScore = parseScore ? parseScore : 0;
+    if (intScore > intHighScore) {
         localStorage.setItem('high-score', score);
     }
-    parseInt(highScore);
+
 }
 
-export function init (score) {
+function init () {
     document.getElementById("score").style.color = 'white';
-    setHighScore(score);
     initHighScore();
 }
 
 export default {
     init,
-    initHighScore
+    initHighScore,
+    setHighScore
 };
