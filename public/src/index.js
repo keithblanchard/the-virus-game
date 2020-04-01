@@ -2,14 +2,9 @@ import Canvas from './Canvas.js';
 import Game from './Game.js';
 import Point from './Point.js'
 import score from './score.js';
-
-window.onresize = function () {
-    window.location.reload();
-};
+let game;
 
 window.TheVirus = window.TheVirus || {};
-
-let game;
 
 window.TheVirus.handleClick = function handleCanvasClick() {
     if (!game.gameOver) {
@@ -43,9 +38,5 @@ window.TheVirus.init = function init() {
     canvas.init();
     game.init(canvas);
 
-};
-
-window.TheVirus.setSpeed = speed => {
-    game.updateSpeed(speed.value);
 };
 
