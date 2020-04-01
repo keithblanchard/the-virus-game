@@ -7,23 +7,30 @@ window.onresize = function () {
     window.location.reload();
 };
 
-window.DotGame = window.DotGame || {};
+window.TheVirus = window.TheVirus || {};
 
 let game;
 
-window.DotGame.handleClick = function handleCanvasClick() {
+window.TheVirus.handleClick = function handleCanvasClick() {
     if (!game.gameOver) {
         const point = new Point(event.offsetX, event.offsetY);
         game.makeMove(point);
     }
 };
 
-window.DotGame.onLoad = function onLoad () {
+window.TheVirus.onLoad = function onLoad () {
+    loadHtml();
     game = new Game();
     score.initHighScore();
 };
 
-window.DotGame.init = function init() {
+function loadHtml () {
+    let link = document.querySelector('link[rel=import]');
+    let content = link.import.querySelector('#root');
+    document.body.appendChild(document.importNode(content, true));
+}
+
+window.TheVirus.init = function init() {
     score.init(game.score);
     let canvas = new Canvas();
     document.getElementById('controls').style.display = 'none';
@@ -38,7 +45,7 @@ window.DotGame.init = function init() {
 
 };
 
-window.DotGame.setSpeed = speed => {
+window.TheVirus.setSpeed = speed => {
     game.updateSpeed(speed.value);
 };
 
