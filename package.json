@@ -1,13 +1,20 @@
 {
-  "name": "dot-game",
+  "name": "the-virus",
   "version": "0.1.0",
   "description": "Example project showing how to use Sass middleware",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start:dev": "node server.js",
+    "start:prod": "node server-build.js",
     "sass": "node ./node_modules/sass/sass.js ./scss/index.scss ./public/index.css",
     "rollup": "./node_modules/rollup/dist/bin/rollup ./public/src/index.js --file ./pre-dist/index.js --format iife",
-    "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output ./dist/index.js --compress --mangle -- ./pre-dist/index.js"
+    "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output ./dist/index.js --compress --mangle -- ./pre-dist/index.js",
+    "copyCSS": "cp ./public/index.css ./dist/index.css",
+    "copyHTML": "cp -R ./public/root.html ./dist/root.html",
+    "copyAudio": "cp -R ./public/audio ./dist/audio",
+    "copyGraphics": "cp -R ./public/images ./dist/images",
+    "copyAll": "npm run copyCSS && npm run copyHTML && npm run copyAudio && npm run copyGraphics",
+    "build": "npm-run-all sass rollup uglifyjs copyAll"
   },
   "dependencies": {
     "express": "^4.15.0",
@@ -21,8 +28,9 @@
     "express",
     "sass"
   ],
-  "license": "MIT",
+  "license": "",
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
     "typescript": "^3.8.3"
   }
 }
