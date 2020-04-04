@@ -10,7 +10,7 @@
     "rollup": "./node_modules/rollup/dist/bin/rollup ./public/src/index.js --file ./pre-dist/index.js --format iife",
     "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output dist/index.js --compress --mangle -- ./pre-dist/index.js",
     "copyCSS": "cp ./public/index.css ./dist/index.css",
-    "copyIndexHTML": "cp ./public/index.html ./dist/index.html",
+    "copyIndexHTML": "cp ./public/index-prod.html ./dist/index.html",
     "copyAudio": "cp -R ./public/audio ./dist/audio",
     "copyGraphics": "cp -R ./public/images ./dist/images",
     "copyTemplates": "cp -R ./public/templates ./dist/templates",
