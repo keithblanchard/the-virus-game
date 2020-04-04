@@ -6,6 +6,17 @@ let game;
 
 window.TheVirus = window.TheVirus || {};
 
+let mute = true;
+window.TheVirus.toggleAudio = function (button) {
+    if (mute) {
+        game.pauseAudio();
+        button.innerHTML = 'Play Music';
+    } else {
+        game.playAudio();
+        button.innerHTML = 'Pause Music';
+    }
+    mute = !mute;
+};
 
 async function includeHTML() {
     const response = await fetch('./templates/root.html');
@@ -27,6 +38,7 @@ window.TheVirus.onLoad = async function onLoad () {
 };
 
 window.TheVirus.init = function init() {
+    document.getElementById('sound-toggle-button').style.visibility = 'visible';
     score.init(game.score);
     let canvas = new Canvas();
     document.getElementById('controls').style.display = 'none';

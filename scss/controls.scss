@@ -6,12 +6,16 @@
   width: 100%;
   color: red;
   button {
-    font-size: 5rem;
+    font-size: 10vmin;
+    margin-top: 1rem;
+  }
+
+  .title {
+    font-size: 12vmin;
   }
 
   .instructions {
-    font-size: 1rem;
-    max-width: 14rem;
+    font-size: 3vmin;
     margin-bottom: 1rem;
     margin-top: 1rem;
     color: white;

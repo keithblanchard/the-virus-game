@@ -8,6 +8,7 @@ export default class Game {
         this.initalSpeed = 100;
         this.score = 0;
         this.gameOver = false;
+        this.sound = document.getElementById('sound');
     }
 
     init(canvas) {
@@ -22,6 +23,7 @@ export default class Game {
         this.createCircles();
         this.initCircleTickInterval();
         this.tick();
+        this.sound.currentTime = 0.0;
     }
 
     /*
@@ -35,6 +37,14 @@ export default class Game {
         }, 1000);
     }
 
+    pauseAudio () {
+        this.sound.pause();
+    }
+
+    playAudio () {
+        this.sound.play();
+    }
+
     endGame() {
         this.gameOver = true;
         clearInterval(this.addCircleInterval);
@@ -45,9 +55,8 @@ export default class Game {
         document.getElementById('controls').style.display = 'flex';
         document.getElementById('canvas').style.display = 'none';
 
-        const sound = document.getElementById('sound');
-        sound.pause();
-        sound.currentTime = 0.0;
+        this.pauseAudio();
+        this.sound.currentTime = 0.0;
 
         setHighScore(this.score);
 
@@ -101,7 +110,7 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-                this.setSpeed(this.speed + 2);
+                this.setSpeed(this.speed + 5);
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);
