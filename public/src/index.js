@@ -6,6 +6,13 @@ let game;
 
 window.TheVirus = window.TheVirus || {};
 
+
+async function includeHTML() {
+    const response = await fetch('./templates/root.html');
+    const html = await response.text();
+    document.body.insertAdjacentHTML('afterbegin', html);
+}
+
 window.TheVirus.handleClick = function handleCanvasClick() {
     if (!game.gameOver) {
         const point = new Point(event.offsetX, event.offsetY);
@@ -13,17 +20,11 @@ window.TheVirus.handleClick = function handleCanvasClick() {
     }
 };
 
-window.TheVirus.onLoad = function onLoad () {
-    loadHtml();
+window.TheVirus.onLoad = async function onLoad () {
+    await includeHTML();
     game = new Game();
     score.initHighScore();
 };
-
-function loadHtml () {
-    let link = document.querySelector('link[rel=import]');
-    let content = link.import.querySelector('#root');
-    document.body.appendChild(document.importNode(content, true));
-}
 
 window.TheVirus.init = function init() {
     score.init(game.score);

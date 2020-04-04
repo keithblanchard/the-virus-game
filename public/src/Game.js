@@ -88,12 +88,6 @@ export default class Game {
         this.smoothness = speedInt;
     }
 
-    updateSpeed(speed) {
-        clearInterval(this.tickCircleInterval);
-        this.setSpeed(speed);
-        this.initCircleTickInterval();
-    }
-
     getScore(radius) {
         let score = 0.1 * (2 * radius) + 11;
         return Math.floor(score);
@@ -107,7 +101,7 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-                this.speed = this.speed + 3;
+                this.setSpeed(this.speed + 2);
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);
