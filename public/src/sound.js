@@ -6,8 +6,8 @@ export function endGame () {
 }
 
 export function init () {
-    const disableAudio = localStorage.getItem('disable-audio');
-    if (disableAudio !== 'yes') {
+    const isDisabledAudio = localStorage.getItem('disable-audio');
+    if (isDisabledAudio !== 'yes') {
         enableAudio();
     } else {
        disableAudio();
