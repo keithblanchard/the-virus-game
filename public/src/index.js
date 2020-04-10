@@ -2,21 +2,11 @@ import Canvas from './Canvas.js';
 import Game from './Game.js';
 import Point from './Point.js'
 import score from './score.js';
+import sound from './sound.js';
 let game;
 
 window.TheVirus = window.TheVirus || {};
-
-let mute = true;
-window.TheVirus.toggleAudio = function (button) {
-    if (mute) {
-        game.pauseAudio();
-        button.innerHTML = 'Play Music';
-    } else {
-        game.playAudio();
-        button.innerHTML = 'Pause Music';
-    }
-    mute = !mute;
-};
+window.TheVirus.toggleAudio = sound.toggleAudio;
 
 async function includeHTML() {
     const response = await fetch('./templates/root.html');
@@ -35,6 +25,7 @@ window.TheVirus.onLoad = async function onLoad () {
     await includeHTML();
     game = new Game();
     score.initHighScore();
+    sound.onLoad();
 };
 
 window.TheVirus.init = function init() {
@@ -46,8 +37,7 @@ window.TheVirus.init = function init() {
     document.getElementById('game-status').style.display = 'none';
     document.getElementById('canvas').style.display = 'block';
     document.getElementById('score').innerHTML = '0';
-    const sound = document.getElementById('sound');
-    sound.play();
+    sound.init();
     canvas.init();
     game.init(canvas);
 

@@ -1,5 +1,6 @@
 import Circle from './Circle.js';
 import score from './score.js';
+import sound from './sound.js'
 
 const { setHighScore } = score;
 
@@ -8,7 +9,6 @@ export default class Game {
         this.initalSpeed = 100;
         this.score = 0;
         this.gameOver = false;
-        this.sound = document.getElementById('sound');
     }
 
     init(canvas) {
@@ -23,7 +23,6 @@ export default class Game {
         this.createCircles();
         this.initCircleTickInterval();
         this.tick();
-        this.sound.currentTime = 0.0;
     }
 
     /*
@@ -37,30 +36,16 @@ export default class Game {
         }, 1000);
     }
 
-    pauseAudio () {
-        this.sound.pause();
-    }
-
-    playAudio () {
-        this.sound.play();
-    }
-
     endGame() {
         this.gameOver = true;
         clearInterval(this.addCircleInterval);
         clearInterval(this.tickCircleInterval);
         cancelAnimationFrame(this.requestAnimationInterval);
-
         document.getElementById('game-over').style.display = 'block';
         document.getElementById('controls').style.display = 'flex';
         document.getElementById('canvas').style.display = 'none';
-
-        this.pauseAudio();
-        this.sound.currentTime = 0.0;
-
         setHighScore(this.score);
-
-
+        sound.endGame();
     }
 
     initCircleTickInterval() {

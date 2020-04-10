@@ -8,6 +8,7 @@
   button {
     font-size: 10vmin;
     margin-top: 1rem;
+    align-self: center;
   }
 
   .title {
@@ -16,8 +17,9 @@
 
   .instructions {
     font-size: 3vmin;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-left: 20vmin;
+    margin-right: 20vmin;
+    margin-bottom: 2rem;
     color: white;
   }
 }
