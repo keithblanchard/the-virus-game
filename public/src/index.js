@@ -26,6 +26,7 @@ window.TheVirus.onLoad = async function onLoad () {
     game = new Game();
     score.initHighScore();
     sound.onLoad();
+    sound.init();
 };
 
 window.TheVirus.init = function init() {

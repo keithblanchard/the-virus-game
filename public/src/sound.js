@@ -2,28 +2,39 @@ let sound;
 let toggleButton;
 
 export function endGame () {
+    sound.pause();
     sound.currentTime = 0.0;
+    setTimeout( () => {
+        sound.play();
+    }, 5000);
+
+}
+
+export function reset () {
+    sound.currentTime = 0.0;
+    sound.play();
 }
 
 export function init () {
     const isDisabledAudio = localStorage.getItem('disable-audio');
-    if (isDisabledAudio !== 'yes') {
-        enableAudio();
+    if (isDisabledAudio === 'yes') {
+        toggleButton.innerHTML = 'Enable Music';
     } else {
-       disableAudio();
+        sound.play();
+        toggleButton.innerHTML = 'Disable Music';
     }
 }
 
 export function enableAudio () {
     sound.play();
     toggleButton.innerHTML = 'Disable Music';
-    localStorage.setItem('disable-audio', 'yes');
+    localStorage.setItem('disable-audio', 'no');
 }
 
 export function disableAudio () {
     sound.pause();
     toggleButton.innerHTML = 'Enable Music';
-    localStorage.setItem('disable-audio', 'no');
+    localStorage.setItem('disable-audio', 'yes');
 }
 
 export function toggleAudio () {
