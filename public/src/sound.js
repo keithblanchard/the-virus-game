@@ -6,13 +6,8 @@ export function endGame () {
     sound.currentTime = 0.0;
     setTimeout( () => {
         sound.play();
-    }, 5000);
+    }, 4000);
 
-}
-
-export function reset () {
-    sound.currentTime = 0.0;
-    sound.play();
 }
 
 export function init () {
@@ -20,6 +15,7 @@ export function init () {
     if (isDisabledAudio === 'yes') {
         toggleButton.innerHTML = 'Enable Music';
     } else {
+        sound.currentTime = 0.0;
         sound.play();
         toggleButton.innerHTML = 'Disable Music';
     }
