@@ -115,13 +115,14 @@ export default class Game {
         if (!circle.image) {
             circle.image = document.getElementById(`virus${this.virusIndex}`);
             this.virusIndex++;
-            if (this.virusIndex > 4) {
+            if (this.virusIndex > 7) {
                 this.virusIndex = 0;
             }
         }
 
         this.context.drawImage(
-            circle.image, circle.center.x,
+            circle.image,
+            circle.center.x,
             circle.center.y,
             circle.radius,
             circle.radius);

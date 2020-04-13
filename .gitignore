@@ -6,3 +6,4 @@ public/index.css.map
 dist/
 pre-dist/
 *.log
+./public/svg-to-png/

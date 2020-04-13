@@ -12,10 +12,12 @@
     "copyCSS": "cp ./public/index.css ./dist/index.css",
     "copyIndexHTML": "cp ./public/index-prod.html ./dist/index.html",
     "copyAudio": "cp -R ./public/audio ./dist/audio",
-    "copyGraphics": "cp -R ./public/images ./dist/images",
+    "copyGraphics": "cp -R public/svg-to-png ./dist/images",
     "copyTemplates": "cp -R ./public/templates ./dist/templates",
     "copyAll": "npm run copyCSS && npm run copyAudio && npm run copyGraphics && npm run copyIndexHTML && npm run copyTemplates",
-    "build": "npm-run-all sass rollup uglifyjs copyAll"
+    "build": "npm-run-all sass rollup uglifyjs copyAll",
+    "build:SVG:viruses": "svg/buildViruses.sh",
+    "updatePremissions": "chmod u+x svg/buildViruses.sh"
   },
   "dependencies": {
     "express": "^4.15.0",
