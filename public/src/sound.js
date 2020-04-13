@@ -4,10 +4,12 @@ let toggleButton;
 export function endGame () {
     sound.pause();
     sound.currentTime = 0.0;
-    setTimeout( () => {
-        sound.play();
-    }, 4000);
-
+    const isDisabledAudio = localStorage.getItem('disable-audio');
+    if (isDisabledAudio === 'no') {
+        setTimeout( () => {
+            sound.play();
+        }, 4000);
+    }
 }
 
 export function init () {
