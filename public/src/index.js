@@ -3,6 +3,7 @@ import Game from './Game.js';
 import Point from './Point.js'
 import score from './score.js';
 import sound from './sound.js';
+import images from './images.js';
 let game;
 
 window.TheVirus = window.TheVirus || {};
@@ -23,10 +24,10 @@ window.TheVirus.handleClick = function handleCanvasClick() {
 
 window.TheVirus.onLoad = async function onLoad () {
     await includeHTML();
+    images.loadVirusImages();
     game = new Game();
     score.initHighScore();
     sound.onLoad();
-    sound.init();
 };
 
 window.TheVirus.init = function init() {

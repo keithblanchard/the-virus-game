@@ -4,12 +4,6 @@ let toggleButton;
 export function endGame () {
     sound.pause();
     sound.currentTime = 0.0;
-    const isDisabledAudio = localStorage.getItem('disable-audio');
-    if (isDisabledAudio === 'no') {
-        setTimeout( () => {
-            sound.play();
-        }, 4000);
-    }
 }
 
 export function init () {
@@ -46,6 +40,12 @@ export function toggleAudio () {
 export function onLoad () {
     sound = document.getElementById('sound');
     toggleButton = document.getElementById('sound-toggle-button');
+    const isDisabledAudio = localStorage.getItem('disable-audio');
+    if (isDisabledAudio === 'yes') {
+        toggleButton.innerHTML = 'Enable Music';
+    } else {
+        toggleButton.innerHTML = 'Disable Music';
+    }
 }
 
 export default {

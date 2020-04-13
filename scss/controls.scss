@@ -11,15 +11,35 @@
     align-self: center;
   }
 
+  .music-info {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    color: white;
+    a {
+      &:link {
+        color: red;
+      }
+      &:visited {
+        color: red;
+      }
+      &:hover {
+        color: white;
+      }
+      &:active {
+        color: gray;
+      }
+    }
+  }
+
   .title {
     font-size: 12vmin;
   }
 
   .instructions {
     font-size: 3vmin;
-    margin-left: 20vmin;
-    margin-right: 20vmin;
-    margin-bottom: 2rem;
+    margin-left: 30vmin;
+    margin-right: 30vmin;
+    margin-bottom: 1rem;
     color: white;
   }
 }

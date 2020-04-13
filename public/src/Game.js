@@ -115,7 +115,7 @@ export default class Game {
         if (!circle.image) {
             circle.image = document.getElementById(`virus${this.virusIndex}`);
             this.virusIndex++;
-            if (this.virusIndex > 7) {
+            if (this.virusIndex > 6) {
                 this.virusIndex = 0;
             }
         }
