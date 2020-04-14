@@ -13,17 +13,14 @@ function loadVirusImages () {
     let virusIndex = 0;
     virusSprites.forEach((virusSprite) => {
         let image = document.createElement('img');
-        /*
-        TODO Implement srcset and sizes
-        image.srcset = `../svg-to-png/viruses/${virusSprite}-300w.png 300w,
-                         ../svg-to-png/viruses/${virusSprite}-400w.png 400w,
-                         ../svg-to-png/viruses/${virusSprite}-500w.png 500w`;
-        image.sizes = `(max-width: 10px) 300vw,
-                       (max-width: 20px) 400vw,
-                       (max-width: 30px) 500vw`;
 
-         */
-        image.src = `./svg-to-png/viruses/${virusSprite}-300w.png`;
+        image.srcset = `../svg-to-png/viruses/${virusSprite}-80w.png 80w,
+                         ../svg-to-png/viruses/${virusSprite}-100w.png 100w,
+                         ../svg-to-png/viruses/${virusSprite}-150w.png 150w`;
+        image.sizes = `(max-width: 400px) 80px,
+                       (max-width: 800px) 100px,
+                       (max-width: 1600px) 150px`;
+
         image.id=`virus${virusIndex}`;
         viruses.appendChild(image);
         virusIndex++;
