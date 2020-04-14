@@ -26,8 +26,6 @@ function loadVirusImages () {
         virusIndex++;
 
     });
-
-
 }
 
 export default {

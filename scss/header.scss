@@ -6,4 +6,39 @@
   align-content: flex-start;
   margin-left: 1rem;
   margin-right: 1rem;
+
+  button {
+    padding: 5px;
+    color: white;
+    width: 80px;
+    border-color: gray;
+    background: transparent;
+    margin: 10px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+@media only screen and (max-height: 1280px) {
+  .header {
+      button {
+        img {
+
+        }
+      }
+  }
+}
+
+@media only screen and (max-height: 640px) {
+  .header {
+    button {
+      img {
+       // width: 20px;
+       // height: 20px;
+      }
+    }
+  }
 }

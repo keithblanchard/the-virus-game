@@ -1,19 +1,23 @@
 .controls {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
   align-items: center;
   width: 100%;
   color: red;
   button {
     font-size: 7vmin;
-    margin-top: 1rem;
     align-self: center;
+    img {
+      width: 70px;
+    }
+  }
+
+  p {
+    margin-left: 10vw;
+    margin-right: 10vw;
   }
 
   .music-info {
-    margin-left: 10vw;
-    margin-right: 10vw;
     color: white;
     a {
       &:link {
@@ -36,10 +40,44 @@
   }
 
   .instructions {
-    font-size: 3vmin;
-    margin-left: 30vmin;
-    margin-right: 30vmin;
     margin-bottom: 1rem;
     color: white;
+  }
+}
+
+@media only screen and (max-height: 1366px) {
+  .controls {
+   // font-size: 37px;
+  //  margin-top: 60px;
+    button {
+     // margin-top: 80px;
+    //  margin-bottom: 80px;
+    }
+  }
+}
+
+@media only screen and (max-height: 1024px) {
+  .controls {
+   // font-size: 28px;
+  }
+}
+
+@media only screen and (max-height: 812px) {
+  .controls {
+  //  font-size: 28px;
+    p {
+   //   margin-left: 5px;
+   //   margin-right: 5px;
+    }
+  }
+}
+
+@media only screen and (min-height: 640px) {
+  .controls {
+    button {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 54px;
+    }
   }
 }

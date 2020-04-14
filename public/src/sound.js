@@ -1,5 +1,7 @@
 let sound;
 let toggleButton;
+let icon;
+let textElement;
 
 export function endGame () {
     sound.pause();
@@ -9,23 +11,23 @@ export function endGame () {
 export function init () {
     const isDisabledAudio = localStorage.getItem('disable-audio');
     if (isDisabledAudio === 'yes') {
-        toggleButton.innerHTML = 'Enable Music';
+        setIconOff();
     } else {
         sound.currentTime = 0.0;
         sound.play();
-        toggleButton.innerHTML = 'Disable Music';
+        setIconOn();
     }
 }
 
 export function enableAudio () {
     sound.play();
-    toggleButton.innerHTML = 'Disable Music';
+    setIconOn();
     localStorage.setItem('disable-audio', 'no');
 }
 
 export function disableAudio () {
     sound.pause();
-    toggleButton.innerHTML = 'Enable Music';
+    setIconOff();
     localStorage.setItem('disable-audio', 'yes');
 }
 
@@ -37,14 +39,29 @@ export function toggleAudio () {
     }
 }
 
+function setIconOn () {
+    icon.src = '../svg/speakerOff.svg';
+    textElement.innerHTML = 'Mute';
+}
+
+function setIconOff () {
+    icon.src = '../svg/speakerOn.svg';
+    textElement.innerHTML = 'Unmute';
+}
+
 export function onLoad () {
     sound = document.getElementById('sound');
     toggleButton = document.getElementById('sound-toggle-button');
+    icon = document.createElement('img');
+    toggleButton.appendChild(icon);
+    textElement = document.createElement('div');
+    toggleButton.appendChild(textElement);
+
     const isDisabledAudio = localStorage.getItem('disable-audio');
     if (isDisabledAudio === 'yes') {
-        toggleButton.innerHTML = 'Enable Music';
+        setIconOff();
     } else {
-        toggleButton.innerHTML = 'Disable Music';
+        setIconOn();
     }
 }
 
