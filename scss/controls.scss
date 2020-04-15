@@ -1,4 +1,4 @@
-.controls {
+.TheVirus_controls {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,35 +45,19 @@
   }
 }
 
-@media only screen and (max-height: 1366px) {
-  .controls {
-   // font-size: 37px;
-  //  margin-top: 60px;
+@media only screen and (min-height: 568px) {
+  .TheVirus_controls {
     button {
-     // margin-top: 80px;
-    //  margin-bottom: 80px;
+      margin-top: 10px;
     }
-  }
-}
-
-@media only screen and (max-height: 1024px) {
-  .controls {
-   // font-size: 28px;
-  }
-}
-
-@media only screen and (max-height: 812px) {
-  .controls {
-  //  font-size: 28px;
-    p {
-   //   margin-left: 5px;
-   //   margin-right: 5px;
+    .music-info {
+      margin-bottom: 0;
     }
   }
 }
 
 @media only screen and (min-height: 640px) {
-  .controls {
+  .TheVirus_controls {
     button {
       margin-top: 10px;
       margin-bottom: 10px;
