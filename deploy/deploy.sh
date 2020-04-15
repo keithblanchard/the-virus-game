@@ -1,7 +1,7 @@
-rm -fr dist
-mkidr dist
-npm run build
-cd dist
+rm -fr ../dist
+cp ./CHAME ../dist/CHAME
+cp ./index.html ./dist/index.html
+cd ../dist
 git init
 git remote add origin git@github.com:keithblanchard/the-virus-game.git
 git add .

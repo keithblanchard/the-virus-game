@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 483.95 560.75"
+   version="1.1"
+   sodipodi:docname="speakerOn.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata30">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="713"
+     id="namedview28"
+     showgrid="false"
+     inkscape:zoom="0.42086491"
+     inkscape:cx="241.97501"
+     inkscape:cy="280.375"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs17">
+    <style
+       id="style15">.cls-1{fill:#009245;}.cls-1,.cls-2{stroke:#000;stroke-miterlimit:10;}.cls-2{fill:none;}</style>
+  </defs>
+  <rect
+     class="cls-1"
+     x="138.98"
+     y="382.96"
+     width="93.49"
+     height="230.73"
+     transform="translate(-139.55 -208.61) rotate(-0.16)"
+     id="rect19" />
+  <polygon
+     class="cls-1"
+     points="120.48 404.7 119.86 173.5 292.64 1.2 294.12 559.63 120.48 404.7"
+     id="polygon21"
+     style="fill:#009245;fill-opacity:1" />
+  <path
+     class="cls-2"
+     d="M477.55,376.41C536,377.09,588.19,411,610,457.34c22.73,48.19,11.47,106.49-29,145.13-25,23.82-60.15,38.87-97.24,40.85"
+     transform="translate(-138.17 -209.12)"
+     id="path23"
+     style="fill:#009245;fill-opacity:1" />
+  <path
+     class="cls-2"
+     d="M480.24,439.06c28.18.39,53.39,19.09,63.93,44.62,11,26.55,5.56,58.67-14,80a69.83,69.83,0,0,1-46.9,22.48"
+     transform="translate(-138.17 -209.12)"
+     id="path25" />
+</svg>
