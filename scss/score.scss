@@ -3,7 +3,7 @@
   margin-top: 5px;
   justify-content: space-around;
   width: 100%;
-  font-size: x-large;
+  font-size: 5vh;
   > div {
     min-width: 84px;
   }
@@ -14,23 +14,9 @@
   }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 450px) {
   .score {
-   // font-size: 30px;
+    font-size: 7vw;
   }
 }
-@media only screen and (max-height: 1024px) {
-  .score {
-   // font-size: 30px;
-  }
-}
-@media only screen and (max-height: 731px) {
-  .score {
-   // font-size: 24px;
-  }
-}
-@media only screen and (max-height: 640px) {
-  .score {
-   // font-size: 18px;
-  }
-}
+
