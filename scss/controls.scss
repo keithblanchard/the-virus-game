@@ -6,6 +6,8 @@
   color: red;
   button {
     font-size: 7vmin;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
     align-self: center;
     img {
       width: 70px;
@@ -37,6 +39,7 @@
 
   .title {
     font-size: 12vmin;
+    margin-top: 5vh;
   }
 
   .instructions {
@@ -45,52 +48,11 @@
   }
 }
 
-@media only screen and (min-height: 568px) {
-  .TheVirus_controls {
-    button {
-      margin-top: 10px;
-    }
-    .music-info {
-      margin-bottom: 0;
-    }
-  }
-}
-
-@media only screen and (min-height: 640px) {
-  .TheVirus_controls {
-    button {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      font-size: 54px;
-    }
-  }
-}
-
-@media only screen and (min-height: 667px) {
+@media only screen and (max-height: 800px) {
   .TheVirus_controls {
     .title {
-      font-size: 60px;
-      margin-top: 10px;
+      margin-top: 0;
     }
   }
 }
-
-@media only screen and (min-height: 731px) {
-  .TheVirus_controls {
-    button {
-      margin-top: 40px;
-      margin-bottom: 40px;
-    }
-  }
-}
-
-@media only screen and (min-height: 823px) {
-  .TheVirus_controls {
-    button {
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-  }
-}
-
 
