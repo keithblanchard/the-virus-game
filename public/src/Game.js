@@ -95,7 +95,7 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-                this.setSpeed(this.speed + 5);
+                this.speed = this.speed + 4;
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);
