@@ -6,7 +6,6 @@ const { setHighScore } = score;
 
 export default class Game {
     constructor() {
-        this.initalSpeed = 1;
         this.score = 0;
         this.gameOver = false;
     }
@@ -19,12 +18,14 @@ export default class Game {
         this.score = 0;
         this.gameOver = false;
         this.virusIndex = 0;
-        this.setSpeed(this.initalSpeed);
+        this.setSpeed(1);
         this.createCircles();
+        this.initCircleTickInterval();
         this.tick();
         this.updateSpeedInterval = setInterval(() => {
-            this.speed++;
-        }, 30000)
+            this.speed = this.speed + .25;
+            this.initCircleTickInterval();
+        }, 15000);
     }
 
     /*
@@ -42,12 +43,24 @@ export default class Game {
         this.gameOver = true;
         clearInterval(this.addCircleInterval);
         clearInterval(this.updateSpeedInterval);
+        clearInterval(this.tickCircleInterval);
         cancelAnimationFrame(this.requestAnimationInterval);
         document.getElementById('game-over').style.display = 'block';
         document.getElementById('controls').style.display = 'flex';
         document.getElementById('canvas').style.display = 'none';
         setHighScore(this.score);
         sound.endGame();
+    }
+
+    initCircleTickInterval() {
+        clearInterval(this.tickCircleInterval);
+        const realSpeed = 10 / this.speed;
+        console.log('real speed', realSpeed);
+        this.tickCircleInterval = setInterval(() => {
+            this.circles.forEach(circle => {
+                this.tickCircle(circle);
+            });
+        }, realSpeed);
     }
 
     tick() {
@@ -124,14 +137,11 @@ export default class Game {
         if (circle.center.y + circle.radius >= this.height) {
             this.endGame();
         }
-        circle.center.y = circle.center.y + this.speed;
+        circle.center.y++;
     }
 
     animationLoop() {
         this.context.clearRect(0, 0, this.width, this.height);
-        this.circles.forEach(circle => {
-            this.tickCircle(circle);
-        });
         this.circles.forEach(circle => {
             this.drawCircle(circle);
         });
