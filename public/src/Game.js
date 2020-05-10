@@ -6,7 +6,7 @@ const { setHighScore } = score;
 
 export default class Game {
     constructor() {
-        this.initalSpeed = 100;
+        this.initalSpeed = 1;
         this.score = 0;
         this.gameOver = false;
     }
@@ -21,8 +21,10 @@ export default class Game {
         this.virusIndex = 0;
         this.setSpeed(this.initalSpeed);
         this.createCircles();
-        this.initCircleTickInterval();
         this.tick();
+        this.updateSpeedInterval = setInterval(() => {
+            this.speed++;
+        }, 30000)
     }
 
     /*
@@ -39,21 +41,13 @@ export default class Game {
     endGame() {
         this.gameOver = true;
         clearInterval(this.addCircleInterval);
-        clearInterval(this.tickCircleInterval);
+        clearInterval(this.updateSpeedInterval);
         cancelAnimationFrame(this.requestAnimationInterval);
         document.getElementById('game-over').style.display = 'block';
         document.getElementById('controls').style.display = 'flex';
         document.getElementById('canvas').style.display = 'none';
         setHighScore(this.score);
         sound.endGame();
-    }
-
-    initCircleTickInterval() {
-        this.tickCircleInterval = setInterval(() => {
-            this.circles.forEach(circle => {
-                this.tickCircle(circle);
-            });
-        }, 1000 / this.smoothness);
     }
 
     tick() {
@@ -79,7 +73,6 @@ export default class Game {
     setSpeed(speed) {
         let speedInt = parseInt(speed);
         this.speed = speedInt;
-        this.smoothness = speedInt;
     }
 
     getScore(radius) {
@@ -95,7 +88,6 @@ export default class Game {
         this.circles = this.circles.filter(circle => {
             if (circle.contains(point)) {
                 this.score = this.score + this.getScore(circle.radius);
-                this.speed = this.speed + 4;
                 setTimeout(() => {
                     this.addCircle();
                 }, 1000);
@@ -132,12 +124,14 @@ export default class Game {
         if (circle.center.y + circle.radius >= this.height) {
             this.endGame();
         }
-
-        circle.center.y = circle.center.y + Math.floor(this.speed / this.smoothness);
+        circle.center.y = circle.center.y + this.speed;
     }
 
     animationLoop() {
         this.context.clearRect(0, 0, this.width, this.height);
+        this.circles.forEach(circle => {
+            this.tickCircle(circle);
+        });
         this.circles.forEach(circle => {
             this.drawCircle(circle);
         });
