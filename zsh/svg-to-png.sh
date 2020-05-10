@@ -1,3 +1,4 @@
+#!/bin/zsh
 # This file copies all files in svg/viruses/ to /public/svg-to-png/viruses/
 mkdir ./public/svg-to-png
 rm -fr ./public/svg-to-png/viruses
