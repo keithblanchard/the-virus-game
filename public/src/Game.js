@@ -18,12 +18,12 @@ export default class Game {
         this.score = 0;
         this.gameOver = false;
         this.virusIndex = 0;
-        this.setSpeed(1);
+        this.speed = 50;
         this.createCircles();
         this.initCircleTickInterval();
         this.tick();
         this.updateSpeedInterval = setInterval(() => {
-            this.speed = this.speed + .25;
+            this.speed = this.speed / 2;
             this.initCircleTickInterval();
         }, 5000);
     }
@@ -54,13 +54,11 @@ export default class Game {
 
     initCircleTickInterval() {
         clearInterval(this.tickCircleInterval);
-        const realSpeed = 10 / this.speed;
-        console.log('real speed', realSpeed);
         this.tickCircleInterval = setInterval(() => {
             this.circles.forEach(circle => {
                 this.tickCircle(circle);
             });
-        }, realSpeed);
+        }, this.speed);
     }
 
     tick() {
@@ -81,11 +79,6 @@ export default class Game {
         if (addCircle) {
             this.circles.push(newCircle);
         }
-    }
-
-    setSpeed(speed) {
-        let speedInt = parseInt(speed);
-        this.speed = speedInt;
     }
 
     getScore(radius) {
