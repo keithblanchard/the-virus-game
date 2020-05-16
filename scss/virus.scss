@@ -1,7 +1,8 @@
 .TheVirus_virus {
   text-align: center;
   margin-top: 4vh;
-
+  height: 13vw;
+  overflow: hidden;
   img {
     width: 13vw;
   }
@@ -9,22 +10,16 @@
 
 @media only screen and (min-height: 640px) {
   .TheVirus_virus {
+    height: 10vh;
     img {
       width: 10vh;
     }
   }
 }
 
-@media only screen and (min-width: 800px) {
-  .TheVirus_virus {
-    img {
-      width: 10vw;
-    }
-  }
-}
-
 @media only screen and (max-width: 568px) {
   .TheVirus_virus {
+    height: 10vh;
     img {
       width: 10vh;
     }
