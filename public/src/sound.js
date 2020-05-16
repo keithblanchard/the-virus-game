@@ -41,12 +41,10 @@ export function toggleAudio () {
 
 function setIconOn () {
     icon.src = '../svg/speakerOff.svg';
-    textElement.innerHTML = 'Mute';
 }
 
 function setIconOff () {
     icon.src = '../svg/speakerOn.svg';
-    textElement.innerHTML = 'Unmute';
 }
 
 export function onLoad () {

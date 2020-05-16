@@ -25,7 +25,7 @@ export default class Game {
         this.updateSpeedInterval = setInterval(() => {
             this.speed = this.speed + .25;
             this.initCircleTickInterval();
-        }, 15000);
+        }, 5000);
     }
 
     /*
