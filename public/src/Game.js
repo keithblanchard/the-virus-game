@@ -20,12 +20,10 @@ export default class Game {
 		this.virusIndex = 0;
 		this.speed = 1;
 		this.createCircles();
-		this.initCircleTickInterval();
 		this.tick();
 		this.updateSpeedInterval = setInterval(() => {
 			this.speed+= 1;
-			this.initCircleTickInterval();
-		}, 6000);
+		}, 15000);
 	}
 
 	/*
@@ -43,22 +41,12 @@ export default class Game {
 		this.gameOver = true;
 		clearInterval(this.addCircleInterval);
 		clearInterval(this.updateSpeedInterval);
-		clearInterval(this.tickCircleInterval);
 		cancelAnimationFrame(this.requestAnimationInterval);
 		document.getElementById('game-over').style.display = 'block';
 		document.getElementById('controls').style.display = 'flex';
 		document.getElementById('canvas').style.display = 'none';
 		setHighScore(this.score);
 		sound.endGame();
-	}
-
-	initCircleTickInterval() {
-		clearInterval(this.tickCircleInterval);
-		this.tickCircleInterval = setInterval(() => {
-			this.circles.forEach(circle => {
-				this.tickCircle(circle);
-			});
-		}, this.speed);
 	}
 
 	tick() {
@@ -128,14 +116,17 @@ export default class Game {
 
 	tickCircle(circle) {
 		if (circle.center.y + circle.radius >= this.height) {
-			this.endGame();
+			this.circles = this.circles.filter(myCircle => myCircle !== circle);
+			//this.endGame();
 		}
-		console.log(this.speed);
 		circle.center.y+= this.speed;
 	}
 
 	animationLoop() {
 		this.context.clearRect(0, 0, this.width, this.height);
+		this.circles.forEach(circle => {
+			this.tickCircle(circle);
+		});
 		this.circles.forEach(circle => {
 			this.drawCircle(circle);
 		});
