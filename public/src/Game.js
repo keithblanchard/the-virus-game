@@ -18,14 +18,14 @@ export default class Game {
 		this.score = 0;
 		this.gameOver = false;
 		this.virusIndex = 0;
-		this.speed = 50;
+		this.speed = 1;
 		this.createCircles();
 		this.initCircleTickInterval();
 		this.tick();
 		this.updateSpeedInterval = setInterval(() => {
-			this.speed = this.speed / 2;
+			this.speed+= 1;
 			this.initCircleTickInterval();
-		}, 5000);
+		}, 6000);
 	}
 
 	/*
@@ -128,14 +128,13 @@ export default class Game {
 
 	tickCircle(circle) {
 		if (circle.center.y + circle.radius >= this.height) {
-			this.circles = this.circles.filter(myCircle => myCircle !== circle);
-			//this.endGame();
+			this.endGame();
 		}
-		circle.center.y++;
+		console.log(this.speed);
+		circle.center.y+= this.speed;
 	}
 
 	animationLoop() {
-	    console.log(this.circles.length);
 		this.context.clearRect(0, 0, this.width, this.height);
 		this.circles.forEach(circle => {
 			this.drawCircle(circle);
