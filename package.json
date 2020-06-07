@@ -8,7 +8,9 @@
     "start:prod": "node server-build.js",
     "sass": "node ./node_modules/sass/sass.js ./scss/index.scss ./public/index.css",
     "rollup": "./node_modules/rollup/dist/bin/rollup ./public/src/index.js --file ./pre-dist/index.js --format iife",
-    "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output dist/index.js --compress --mangle -- ./pre-dist/index.js"
+    "uglifyjs": "./node_modules/uglify-es/bin/uglifyjs --output dist/index.js --compress --mangle -- ./pre-dist/index.js",
+    "lint": "node ./node_modules/eslint/bin/eslint.js ./public/src/",
+    "lint:fix": "node ./node_modules/eslint/bin/eslint.js --fix ./public/src/"
   },
   "dependencies": {
     "express": "^4.15.0",
@@ -23,6 +25,7 @@
   ],
   "license": "",
   "devDependencies": {
+    "eslint": "^6.8.0",
     "npm-run-all": "^4.1.5",
     "typescript": "^3.8.3"
   }
