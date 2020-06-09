@@ -7,7 +7,7 @@ const { setHighScore } = score;
 export default class Game {
   constructor() {
     this.score = 0;
-    this.level = 0;
+    this.level = 1;
     this.gameOver = false;
   }
 
@@ -40,7 +40,7 @@ export default class Game {
   }
 
   resetLevel () {
-    this.level = 0;
+    this.level = 1;
     document.getElementById('level').innerText = '';
     document.getElementById('level-label').style.visibility = 'hidden';
   }
