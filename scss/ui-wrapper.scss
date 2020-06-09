@@ -3,4 +3,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  .sound-level-wrapper {
+    min-width: 26vw;
+    margin-top: 1vh;
+  }
 }

@@ -29,6 +29,3 @@ cp -R public/svg* ./dist/
 
 echo 'Copy HTML templates'
 cp -R ./public/templates ./dist/templates
-
-echo 'Launching production version of the site locally.'
-npm run start:prod

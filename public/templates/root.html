@@ -13,9 +13,13 @@
                 <div id="high-score">&nbsp;</div>
             </div>
         </div>
-        <button id="sound-toggle-button"
-                type="button"
-                onclick="TheVirus.toggleAudio(this)"></button>
+        <div class="sound-level-wrapper">
+            <div id="level"></div>
+            <button id="sound-toggle-button"
+                    type="button"
+                    onclick="TheVirus.toggleAudio()"></button>
+        </div>
+
     </section>
     <secton id="game-status" class="game-status" style="display: none;">
         <h2 id="game-over" class="game-over" style="display: none;">Game Over</h2>
