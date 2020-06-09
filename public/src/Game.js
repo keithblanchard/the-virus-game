@@ -23,11 +23,11 @@ export default class Game {
     this.createCircles();
     this.tick();
     this.setLevel();
+    document.getElementById('level-label').style.visibility = 'visible';
     this.updateSpeedInterval = setInterval(() => {
       this.speed++;
-      this.level++;
       this.updateLevel();
-    }, 30000);
+    }, 60000);
   }
   
   updateLevel () {
@@ -36,12 +36,13 @@ export default class Game {
   }
 
   setLevel() {
-    document.getElementById('level').innerText = `Level ${this.level}`;
+    document.getElementById('level').innerText = this.level;
   }
 
   resetLevel () {
     this.level = 0;
     document.getElementById('level').innerText = '';
+    document.getElementById('level-label').style.visibility = 'hidden';
   }
 
   /*
