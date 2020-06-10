@@ -7,7 +7,6 @@ const { setHighScore } = score;
 export default class Game {
   constructor() {
     this.score = 0;
-    this.level = 1;
     this.gameOver = false;
   }
 
@@ -20,6 +19,7 @@ export default class Game {
     this.gameOver = false;
     this.virusIndex = 0;
     this.speed = 1;
+    this.level = 1;
     this.createCircles();
     this.tick();
     this.setLevel();
@@ -37,12 +37,6 @@ export default class Game {
 
   setLevel() {
     document.getElementById('level').innerText = this.level;
-  }
-
-  resetLevel () {
-    this.level = 1;
-    document.getElementById('level').innerText = '';
-    document.getElementById('level-label').style.visibility = 'hidden';
   }
 
   /*
@@ -65,7 +59,6 @@ export default class Game {
     document.getElementById('controls').style.display = 'flex';
     document.getElementById('canvas').style.display = 'none';
     setHighScore(this.score);
-    this.resetLevel();
     sound.endGame();
   }
 
